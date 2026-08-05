@@ -1,283 +1,287 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marco & [Nome Sposa] - Matrimonio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        :root {
-            --champagne: #f5e6d3;
-            --salvia: #a8b5a2;
-            --oro: #c8a96b;
-            --avorio: #fffdf8;
-        }
+<title>Marco & Giulia</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: var(--avorio);
-            color: #444;
-            line-height: 1.6;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        header {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            color: white;
-            background: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
-                        linear-gradient(135deg,var(--salvia),var(--champagne));
-        }
+body{
+    font-family:Georgia, serif;
+    background:#f7efe4;
+    overflow-x:hidden;
+}
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
+.hero{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    perspective:1500px;
+}
 
-        .hero p {
-            margin-bottom: 10px;
-        }
+.envelope{
+    position:relative;
+    width:350px;
+    height:240px;
+}
 
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background: white;
-            color: #555;
-            text-decoration: none;
-            border-radius: 30px;
-        }
+.envelope-body{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#eadcc9;
+    border-radius:8px;
+    box-shadow:0 20px 40px rgba(0,0,0,.2);
+}
 
-        section {
-            max-width: 1000px;
-            margin: auto;
-            padding: 60px 20px;
-        }
+.flap{
+    position:absolute;
+    top:0;
+    left:0;
 
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--oro);
-        }
+    width:100%;
+    height:120px;
 
-        .grid {
-            display: grid;
-            gap: 20px;
-        }
+    background:#e2d1bc;
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,.08);
-        }
+    clip-path:polygon(0 0,100% 0,50% 100%);
 
-        .gallery {
-            display: grid;
-            gap: 20px;
-            grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-        }
+    transform-origin:top;
+    transition:transform 1.5s ease;
 
-        .photo {
-            height: 220px;
-            border-radius: 12px;
-            background: var(--champagne);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    z-index:10;
+}
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+.letter{
+    position:absolute;
+    left:20px;
+    right:20px;
+    top:20px;
 
-        input, select, textarea, button {
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
+    height:200px;
 
-        button {
-            background: var(--salvia);
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+    background:white;
 
-        #countdown {
-            margin-top: 20px;
-            font-size: 2rem;
-            font-weight: bold;
-        }
+    border-radius:6px;
 
-        footer {
-            background: var(--salvia);
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 
-        @media(min-width:768px) {
-            .grid {
-                grid-template-columns: repeat(2,1fr);
-            }
-        }
-    </style>
+    transform:translateY(120px);
+
+    transition:transform 2s ease;
+
+    z-index:3;
+}
+
+.letter h1{
+    color:#b08c57;
+    margin-bottom:10px;
+}
+
+.seal{
+    position:absolute;
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle at top left,
+    #d84545,
+    #8d1010);
+
+    left:50%;
+    top:65px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+    font-size:28px;
+
+    cursor:pointer;
+
+    z-index:20;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.3);
+
+    transition:
+    transform .8s ease,
+    opacity .8s ease;
+}
+
+.hint{
+    margin-top:30px;
+    color:#666;
+}
+
+.open .flap{
+    transform:rotateX(180deg);
+}
+
+.open .letter{
+    transform:translateY(-80px);
+}
+
+.open .seal{
+    transform:
+    translateX(-50%)
+    scale(0);
+
+    opacity:0;
+}
+
+.content{
+    padding:100px 20px;
+    max-width:900px;
+    margin:auto;
+
+    opacity:0;
+    transition:opacity 2s ease;
+}
+
+.content.show{
+    opacity:1;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    margin-bottom:30px;
+}
+
+@media(max-width:500px){
+
+    .envelope{
+        width:300px;
+        height:210px;
+    }
+
+    .letter{
+        height:170px;
+    }
+
+    .letter h1{
+        font-size:26px;
+    }
+}
+
+</style>
 </head>
-
 <body>
 
-<section class="invitation-section">
+<section class="hero">
 
-    <div id="envelope" class="envelope">
+    <div class="envelope" id="envelope">
 
-        <div class="envelope-back"></div>
+        <div class="envelope-body"></div>
 
         <div class="letter">
-            <div class="letter-content">
-                <h1>Marco & Giulia</h1>
 
-                <p class="date">
-                    12 Giugno 2027
-                </p>
+            <h1>Marco & Giulia</h1>
 
-                <p>
-                    Vi invitiamo a celebrare con noi
-                    il giorno più bello della nostra vita.
-                </p>
-            </div>
+            <p>
+                12 Giugno 2027
+            </p>
+
+            <p>
+                Vi invitiamo al nostro matrimonio
+            </p>
+
         </div>
 
         <div class="flap"></div>
 
-        <div class="seal">
+        <div class="seal" id="seal">
             ❤
         </div>
 
     </div>
 
-    <div class="scroll-hint">
-        Scorri per aprire l'invito
-    </div>
+    <p class="hint">
+        Tocca il sigillo per aprire l'invito
+    </p>
 
 </section>
 
-<header>
-    <div class="hero">
-        <h1>Marco & [Nome Sposa]</h1>
-        <p>Ci sposiamo!</p>
-        <p>📅 12 Giugno 2027</p>
-        <p>📍 Inserire Location</p>
-
-        <div id="countdown"></div>
-
-        <a href="#rsvp" class="btn">Conferma Presenzar>
-
-<section>
-    <h2>La Nostra Storia</h2>
-
-    <div class="grid">
-        <div class="card">
-            ❤️ Come ci siamo conosciuti
-        </div>
-
-        <div class="card">
-            💍 La proposta di matrimonio
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2>Informazioni</h2>
-
-    <div class="grid">
-        <div class="card">
-            <h3>Cerimonia</h3>
-            <p>Chiesa / Comune</p>
-            <p>Ore 11:00</p>
-        </div>
-
-        <div class="card">
-            <h3>Ricevimento</h3>
-            <p>Location ricevimento</p>
-            <p>Ore 13:00</p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2>Galleria</h2>
-
-    <div class="gallery">
-        <div class="photo">Foto 1</div>
-        <div class="photo">Foto 2</div>
-        <div class="photo">Foto 3</div>
-    </div>
-</section>
-
-<section id="rsvp">
-    <h2>RSVP</h2>
-
-    <form>
-        <input type="text" placeholder="Nome e Cognome">
-        <select>
-            <option>Parteciperò</option>
-            <option>Non potrò partecipare</option>
-        </select>
-
-        <input type="number" placeholder="Numero accompagnatori">
-
-        <textarea rows="5" placeholder="Allergie o intolleranze"></textarea>
-
-        <button type="button">Invia</button>
-    </form>
-</section>
-
-<section>
-    <h2>Lista Nozze</h2>
+<section class="content" id="content">
 
     <div class="card">
-        Inserire IBAN o link per il viaggio di nozze.
+        <h2>La nostra storia</h2>
+        <br>
+        <p>
+            Qui potrai raccontare la vostra storia.
+        </p>
     </div>
+
+    <div class="card">
+        <h2>Cerimonia</h2>
+        <br>
+        <p>
+            Chiesa San...
+        </p>
+        <p>
+            Ore 11:00
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Ricevimento</h2>
+        <br>
+        <p>
+            Villa ...
+        </p>
+    </div>
+
 </section>
 
-<footer>
-    Non vediamo l'ora di festeggiare con voi ❤️
-</footer>
-
 <script>
-const weddingDate = new Date("2027-06-12T11:00:00");
 
-function updateCountdown() {
+document
+.getElementById("seal")
+.addEventListener("click", function(){
 
-    const now = new Date();
-    const diff = weddingDate - now;
+    document
+    .getElementById("envelope")
+    .classList
+    .add("open");
 
-    if (diff <= 0) {
-        document.getElementById("countdown").innerText = "È il grande giorno!";
-        return;
-    }
+    setTimeout(function(){
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        document
+        .getElementById("content")
+        .classList
+        .add("show");
 
-    document.getElementById("countdown").innerText =
-        days + " giorni " + hours + " ore";
-}
+        window.scrollTo({
+            top:window.innerHeight,
+            behavior:"smooth"
+        });
 
-updateCountdown();
-setInterval(updateCountdown, 60000);
+    },1200);
+
+});
+
 </script>
 
 </body>
