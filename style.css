@@ -13,20 +13,24 @@ body{
 /* BUSTA */
 
 #envelope-container{
+    position:fixed;
+    inset:0;
+    width:100vw;
     height:100vh;
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
+    overflow:hidden;
 }
 
 .envelope{
-    width:380px;
-    height:250px;
+    width:100vw;
+    height:100vh;
     background:#f1e7d8;
     position:relative;
-    border-radius:8px;
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
+    border-radius:0;
+    box-shadow:none;
+    overflow:hidden;
 }
 
 .envelope::before{
@@ -35,9 +39,8 @@ body{
     top:0;
     left:0;
     width:100%;
-    height:100%;
-
-    clip-path:polygon(0 0,50% 55%,100% 0);
+    height:55%;
+    clip-path:polygon(0 0, 50% 100%, 100% 0);
     background:#eadbc4;
 }
 
@@ -47,8 +50,9 @@ body{
     left:50%;
     transform:translate(-50%,-50%);
 
-    width:90px;
-    height:90px;
+    width:140px;
+    height:140px;
+    font-size:1.3rem;
 
     border-radius:50%;
 
