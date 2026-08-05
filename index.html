@@ -1,447 +1,67 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marco & Laura</title>
 
-    style.css
+    <link rel="stylesheet" href="style.css">
 </head>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" gleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;box-sizing:border-box;
-}
-
-body{
-
-    font-family:'Cormorant Garamond', serif;
-
-    background:
-    linear-gradient(
-        135deg,
-        #f8f3ec,
-        #f0e7db
-    );
-
-    overflow-x:hidden;
-
-    color:#3f3f3f;
-}
-
-/* HERO */
-
-.hero{
-
-    height:100vh;
-
-    display:flex;
-    flex-direction:column;
-
-    justify-content:center;
-    align-items:center;
-
-    perspective:1800px;
-}
-
-/* BUSTA */
-
-.envelope{
-
-    position:relative;
-
-    width:380px;
-    height:270px;
-}
-
-.envelope-back{
-
-    position:absolute;
-    inset:0;
-
-    background:
-    linear-gradient(
-        145deg,
-        #f3e5d4,
-        #dbc4a5
-    );
-
-    border-radius:8px;
-
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.16);
-}
-
-/* LETTERA */
-
-.letter{
-
-    position:absolute;
-
-    left:24px;
-    right:24px;
-    bottom:15px;
-
-    height:220px;
-
-    background:#fffdf8;
-
-    border-radius:6px;
-
-    z-index:5;
-
-    transform:translateY(130px);
-
-    transition:transform 2s ease;
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.12);
-
-}
-
-.letter-content{
-
-    padding:28px;
-    text-align:center;
-}
-
-.letter h1{
-
-    color:#b18b4d;
-
-    font-size:48px;
-
-    margin-bottom:12px;
-}
-
-.date{
-
-    font-size:24px;
-
-    margin-bottom:20px;
-}
-
-/* TASCA */
-
-.envelope-front{
-
-    position:absolute;
-
-    bottom:0;
-    left:0;
-
-    width:100%;
-    height:68%;
-
-    background:
-    linear-gradient(
-        145deg,
-        #e8d3b6,
-        #d5bc9c
-    );
-
-    clip-path:
-    polygon(
-        0 0,
-        50% 45%,
-        100% 0,
-        100% 100%,
-        0 100%
-    );
-
-    z-index:12;
-
-    box-shadow:
-        inset 0 2px 5px rgba(255,255,255,.35),
-        inset 0 -5px 10px rgba(0,0,0,.08);
-}
-
-/* LEMBO */
-
-.flap{
-
-    position:absolute;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:150px;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #eddcc6,
-        #d8bea0
-    );
-
-    clip-path:
-    polygon(
-        0 0,
-        100% 0,
-        50% 100%
-    );
-
-    z-index:22;
-
-    transform-origin:top center;
-
-    transition:transform 1.6s ease;
-
-    box-shadow:
-        inset 0 2px 4px rgba(255,255,255,.35);
-}
-
-/* CERALACCA */
-
-.seal{
-
-    position:absolute;
-
-    width:82px;
-    height:82px;
-
-    left:50%;
-    top:88px;
-
-    transform:translateX(-50%);
-
-    border-radius:50%;
-
-    z-index:30;
-
-    background:
-    radial-gradient(
-        circle at 30% 30%,
-        #ff8f8f,
-        #c92424 45%,
-        #690606
-    );
-
-    box-shadow:
-        0 10px 20px rgba(0,0,0,.25),
-        inset -5px -5px 10px rgba(0,0,0,.35),
-        inset 4px 4px 10px rgba(255,255,255,.25);
-
-    border:2px solid rgba(255,255,255,.15);
-
-    color:white;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-weight:700;
-    font-size:18px;
-
-    cursor:pointer;
-
-    transition:
-        transform .7s ease,
-        opacity .7s ease;
-}
-
-/* STATO APERTA */
-
-.open .flap{
-    transform:rotateX(180deg);
-}
-
-.open .letter{
-    transform:translateY(-70px);
-}
-
-.open .seal{
-
-    opacity:0;
-
-    transform:
-        translateX(-50%)
-        scale(0);
-}
-
-/* TESTI */
-
-.hint{
-
-    margin-top:35px;
-
-    font-size:20px;
-    color:#6e6e6e;
-}
-
-/* CONTENUTO */
-
-.content{
-
-    max-width:1000px;
-
-    margin:auto;
-
-    padding:120px 20px;
-
-    opacity:0;
-
-    transition:opacity 2s ease;
-}
-
-.content.show{
-    opacity:1;
-}
-
-.card{
-
-    background:white;
-
-    margin-bottom:30px;
-
-    padding:35px;
-
-    border-radius:16px;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.08);
-}
-
-.card h2{
-
-    color:#b18b4d;
-
-    margin-bottom:15px;
-}
-
-/* MOBILE */
-
-@media(max-width:500px){
-
-    .envelope{
-        width:320px;
-        height:230px;
-    }
-
-    .letter{
-        height:180px;
-    }
-
-    .letter h1{
-        font-size:36px;
-    }
-
-    .date{
-        font-size:20px;
-    }
-
-}
-
-</style>
-
-</head>
-
 <body>
 
-<section class="hero">
+    <div id="envelope-container">
+        <div class="envelope">
 
-    <div id="envelope" class="envelope">
-
-        <div class="envelope-back"></div>
-
-        <div class="letter">
-
-            <div class="letter-content">
-
-                <h1>Marco & Laura</h1>
-
-                <div class="date">
-                    12 Giugno 2027
-                </div>
-
-                <p>
-                    Vi invitiamo a celebrare con noi
-                    il giorno più bello della nostra vita.
-                </p>
-
+            <div class="seal" id="openInvite">
+                M ♥ L
             </div>
 
         </div>
+        <p class="open-text">Tocca il sigillo per aprire l'invito</p>
+    </div>
 
-        <div class="envelope-front"></div>
+    <div class="invitation hidden" id="invitation">
 
-        <div class="flap"></div>
+        <header class="hero">
+            <h1>Marco & Laura</h1>
+            <p>12 Giugno 2027</p>
+            <p>Vi invitiamo a celebrare con noi il giorno più bello della nostra vita.</p>
+        </header>
 
-        <div id="seal" class="seal">
-            M ♥ L
-        </div>
+        <section>
+            <h2>La nostra storia</h2>
+
+            <p>
+                Qui potrete raccontare come vi siete conosciuti,
+                le tappe importanti della vostra relazione e il percorso
+                che vi ha portato al matrimonio.
+            </p>
+        </section>
+
+        <section>
+            <h2>Cerimonia</h2>
+
+            <div class="card">
+                <p>📍 Inserire luogo cerimonia</p>
+                <p>🕒 Ore 11:00</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Ricevimento</h2>
+
+            <div class="card">
+                <p>🥂 Inserire location del ricevimento</p>
+            </div>
+        </section>
+
+        <footer>
+            Con amore ❤️ Marco & Laura
+        </footer>
 
     </div>
 
-    <p class="hint">
-        Tocca il sigillo per aprire l'invito
-    </p>
-
-</section>
-
-<section id="content" class="content">
-
-    <div class="card">
-
-        <h2>La nostra storia</h2>
-
-        <p>
-            Qui potrete raccontare come vi siete conosciuti,
-            le tappe importanti della vostra relazione
-            e il percorso che vi ha portato al matrimonio.
-        </p>
-
-    </div>
-
-    <div class="card">
-
-        <h2>Cerimonia</h2>
-
-        <p>📍 Inserire luogo cerimonia</p>
-
-        <p>🕚 Ore 11:00</p>
-
-    </div>
-
-    <div class="card">
-
-        <h2>Ricevimento</h2>
-
-        <p>🥂 Inserire location del ricevimento</p>
-
-    </div>
-
-</section>
-
-<script>
-
-document
-.getElementById("seal")
-.addEventListener("click", function(){
-
-    document
-        .getElementById("envelope")
-        .classList
-        .add("open");
-
-    setTimeout(function(){
-
-        document
-            .getElementById("content")
-            .classList
-            .add("show");
-
-        window.scrollTo({
-            top: window.innerHeight,
-            behavior: "smooth"
-        });
-
-    },1200);
-
-});
-
-</script>
+    script.jsscript>
 
 </body>
 </html>
