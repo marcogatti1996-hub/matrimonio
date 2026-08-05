@@ -1,1 +1,249 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Marco & Sposa - Matrimonio</title><link rel="preconnect" href="https://fonts.googleapis.com"><style>:root{--champ:#f5e6d3;--sage:#a8b5a2;--gold:#c8a96b;--ivory:#fffdf8;}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--ivory);color:#444}header{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),linear-gradient(135deg,var(--sage),var(--champ));color:#fff;padding:20px}.hero h1{font-size:3rem;margin:0}.hero p{font-size:1.2rem}.btn{display:inline-block;background:#fff;color:#666;padding:12px 24px;border-radius:30px;text-decoration:none}section{padding:60px 20px;max-width:1000px;margin:auto}h2{color:var(--gold);text-align:center}.timeline,.info,.gallery{display:grid;gap:20px}.card{background:white;padding:20px;border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,.08)}.gallery{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.photo{height:220px;border-radius:12px;background:var(--champ);display:flex;align-items:center;justify-content:center}.countdown{font-size:2rem;text-align:center;font-weight:bold;color:var(--gold)}form{display:flex;flex-direction:column;gap:12px}input,select,textarea,button{padding:12px;border-radius:8px;border:1px solid #ccc}button{background:var(--sage);color:#fff;border:none}footer{text-align:center;padding:30px;background:var(--sage);color:#fff}@media(min-width:768px){.timeline,.info{grid-template-columns:repeat(2,1fr)}} </style></head><body><header><div class="hero"><h1>Marco & [Nome Sposa]</h1><p>Ci sposiamo!</p><p>📅 12 Giugno 2027 • 📍 Inserire Location</p><div id="countdown" class="countdown"></div><br><a class="btn" href="#rsvp">Conferma Presenza</a></div></header><section><h2>La Nostra Storia</h2><div class="timeline"><div class="card">❤️ Come ci siamo conosciuti</div><div class="card">💍 La proposta di matrimonio</div></div></section><section><h2>Informazioni</h2><div class="info"><div class="card"><h3>Cerimonia</h3><p>Chiesa/Comune</p><p>Ore 11:00</p></div><div class="card"><h3>Ricevimento</h3><p>Location ricevimento</p><p>Ore 13:00</p></div></div></section><section><h2>Galleria</h2><div class="gallery"><div class="photo">Foto 1</div><div class="photo">Foto 2</div><div class="photo">Foto 3</div></div></section><section id="rsvp"><h2>RSVP</h2><form><input placeholder="Nome e Cognome"><select><option>Parteciperò</option><option>Non potrò partecipare</option></select><input placeholder="Numero accompagnatori"><textarea placeholder="Allergie o intolleranze"></textarea><button type="button">Invia</button></form></section><section><h2>Lista Nozze</h2><div class="card"><p>Inserire IBAN o link viaggio di nozze.</p></div></section><footer>Non vediamo l'ora di festeggiare con voi ❤️</footer><script>const d=new Date('2027-06-12T11:00:00');function u(){const n=new Date();const diff=d-n;if(diff<0)return;const g=Math.floor(diff/86400000);const h=Math.floor(diff%86400000/3600000);document.getElementById('countdown').innerText=g+' giorni '+h+' ore';}u();setInterval(u,60000);</script></body></html>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco & [Nome Sposa] - Matrimonio</title>
+
+    <style>
+        :root {
+            --champagne: #f5e6d3;
+            --salvia: #a8b5a2;
+            --oro: #c8a96b;
+            --avorio: #fffdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--avorio);
+            color: #444;
+            line-height: 1.6;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: white;
+            background: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+                        linear-gradient(135deg,var(--salvia),var(--champagne));
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: white;
+            color: #555;
+            text-decoration: none;
+            border-radius: 30px;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--oro);
+        }
+
+        .grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.08);
+        }
+
+        .gallery {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+        }
+
+        .photo {
+            height: 220px;
+            border-radius: 12px;
+            background: var(--champagne);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        input, select, textarea, button {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: var(--salvia);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #countdown {
+            margin-top: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        footer {
+            background: var(--salvia);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media(min-width:768px) {
+            .grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="hero">
+        <h1>Marco & [Nome Sposa]</h1>
+        <p>Ci sposiamo!</p>
+        <p>📅 12 Giugno 2027</p>
+        <p>📍 Inserire Location</p>
+
+        <div id="countdown"></div>
+
+        <a href="#rsvp" class="btn">Conferma Presenzar>
+
+<section>
+    <h2>La Nostra Storia</h2>
+
+    <div class="grid">
+        <div class="card">
+            ❤️ Come ci siamo conosciuti
+        </div>
+
+        <div class="card">
+            💍 La proposta di matrimonio
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Informazioni</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Cerimonia</h3>
+            <p>Chiesa / Comune</p>
+            <p>Ore 11:00</p>
+        </div>
+
+        <div class="card">
+            <h3>Ricevimento</h3>
+            <p>Location ricevimento</p>
+            <p>Ore 13:00</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Galleria</h2>
+
+    <div class="gallery">
+        <div class="photo">Foto 1</div>
+        <div class="photo">Foto 2</div>
+        <div class="photo">Foto 3</div>
+    </div>
+</section>
+
+<section id="rsvp">
+    <h2>RSVP</h2>
+
+    <form>
+        <input type="text" placeholder="Nome e Cognome">
+        <select>
+            <option>Parteciperò</option>
+            <option>Non potrò partecipare</option>
+        </select>
+
+        <input type="number" placeholder="Numero accompagnatori">
+
+        <textarea rows="5" placeholder="Allergie o intolleranze"></textarea>
+
+        <button type="button">Invia</button>
+    </form>
+</section>
+
+<section>
+    <h2>Lista Nozze</h2>
+
+    <div class="card">
+        Inserire IBAN o link per il viaggio di nozze.
+    </div>
+</section>
+
+<footer>
+    Non vediamo l'ora di festeggiare con voi ❤️
+</footer>
+
+<script>
+const weddingDate = new Date("2027-06-12T11:00:00");
+
+function updateCountdown() {
+
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+        document.getElementById("countdown").innerText = "È il grande giorno!";
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+
+    document.getElementById("countdown").innerText =
+        days + " giorni " + hours + " ore";
+}
+
+updateCountdown();
+setInterval(updateCountdown, 60000);
+</script>
+
+</body>
+</html>
