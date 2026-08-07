@@ -11,10 +11,13 @@ if (startVideoBtn && introScreen && videoContainer && introVideo && invitation) 
 
         introVideo.play().catch((error) => {
             console.log("Errore nella riproduzione del video:", error);
+            videoContainer.classList.add("hidden");
+            invitation.classList.remove("hidden");
         });
     });
 
     introVideo.addEventListener("ended", () => {
+        console.log("Video terminato");
         videoContainer.classList.add("hidden");
         invitation.classList.remove("hidden");
     });
