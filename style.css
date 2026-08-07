@@ -37,20 +37,12 @@ body {
     font-size: 1.1rem;
     border-radius: 30px;
     cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.open-btn:hover {
-    background: #6f4747;
 }
 
 .video-container {
     position: fixed;
     inset: 0;
     background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 999;
 }
 
@@ -68,44 +60,4 @@ body {
 .hero {
     text-align: center;
     padding: 50px 20px;
-}
-
-.countdown {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.countdown div {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    min-width: 80px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.countdown span {
-    font-size: 2rem;
-    display: block;
-    font-weight: bold;
-}
-
-section {
-    max-width: 800px;
-    margin: 30px auto;
-    text-align: center;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-footer {
-    text-align: center;
-    padding: 40px 20px;
 }
