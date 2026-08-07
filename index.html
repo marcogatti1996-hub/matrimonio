@@ -1,88 +1,55 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marco & Laura</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Video</title>
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    .hidden { display: none; }
+    .intro-screen {
+      height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: #eadfd6; text-align: center;
+    }
+    .video-container {
+      position: fixed; inset: 0; background: black;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-container video { width: 100%; max-width: 900px; max-height: 100vh; }
+  </style>
 </head>
 <body>
 
-    <div id="intro-screen" class="intro-screen">
-        <div class="intro-content">
-            <h1>Marco & Laura</h1>
-            <p>12 Giugno 2027</p>
-            <button id="startVideoBtn" class="open-btn">Apri l'invito</button>
-        </div>
-    </div>
+  <div id="intro-screen" class="intro-screen">
+    <button id="startVideoBtn">Apri video</button>
+  </div>
 
-    <div id="video-container" class="video-container hidden">
-        <video id="introVideo" playsinline controls preload="metadata">
-            <source src="video/Video_Busta.mp4" type="video/mp4">
-            Il tuo browser non supporta il video.
-        </video>
-    </div>
+  <div id="video-container" class="video-container hidden">
+    <video id="introVideo" playsinline controls preload="metadata">
+      <source src="video/Video_Busta.mp4" type="video/mp4">
+      Il tuo browser non supporta il video.
+    </video>
+  </div>
 
-    <div class="invitation hidden" id="invitation">
-        <header class="hero">
-            <h1>Marco & Laura</h1>
-            <p>12 Giugno 2027</p>
-            <p>Vi invitiamo a celebrare con noi il giorno più bello della nostra vita.</p>
+  <script>
+    const startVideoBtn = document.getElementById("startVideoBtn");
+    const introScreen = document.getElementById("intro-screen");
+    const videoContainer = document.getElementById("video-container");
+    const introVideo = document.getElementById("introVideo");
 
-            <div class="countdown">
-                <div>
-                    <span id="days">0</span>
-                    <small>Giorni</small>
-                </div>
-                <div>
-                    <span id="hours">0</span>
-                    <small>Ore</small>
-                </div>
-                <div>
-                    <span id="minutes">0</span>
-                    <small>Minuti</small>
-                </div>
-                <div>
-                    <span id="seconds">0</span>
-                    <small>Secondi</small>
-                </div>
-            </div>
-        </header>
+    console.log("JS caricato");
 
-        <section>
-            <h2>La nostra storia</h2>
-            <p>
-                Qui potrete raccontare come vi siete conosciuti,
-                le tappe importanti della vostra relazione e il percorso
-                che vi ha portato al matrimonio.
-            </p>
-        </section>
+    startVideoBtn.addEventListener("click", () => {
+      console.log("Click ok");
+      introScreen.classList.add("hidden");
+      videoContainer.classList.remove("hidden");
+      introVideo.play().catch(err => console.log("Play error:", err));
+    });
 
-        <section>
-            <h2>Cerimonia</h2>
-            <div class="card">
-                <p>📍 Inserire luogo cerimonia</p>
-                <p>🕒 Ore 11:00</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Ricevimento</h2>
-            <div class="card">
-                <p>🥂 Inserire location del ricevimento</p>
-            </div>
-        </section>
-
-        <footer>
-            Con amore ❤️ Marco & Laura
-        </footer>
-    </div>
-
-    <script src="script.js"></script>
+    introVideo.addEventListener("ended", () => {
+      console.log("Video finito");
+      alert("Video terminato");
+    });
+  </script>
 </body>
 </html>
