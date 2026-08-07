@@ -3,25 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Video</title>
+  <title>Marco & Laura</title>
   <style>
-    body { margin: 0; font-family: sans-serif; }
+    body { margin: 0; font-family: sans-serif; background: #f9f5f0; }
     .hidden { display: none; }
+
     .intro-screen {
-      height: 100vh; display: flex; align-items: center; justify-content: center;
-      background: #eadfd6; text-align: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #eadfd6;
     }
+
     .video-container {
-      position: fixed; inset: 0; background: black;
-      display: flex; align-items: center; justify-content: center;
+      position: fixed;
+      inset: 0;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .video-container video { width: 100%; max-width: 900px; max-height: 100vh; }
+
+    .video-container video {
+      width: 100%;
+      max-width: 900px;
+      max-height: 100vh;
+    }
+
+    .invitation {
+      padding: 40px 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
 
   <div id="intro-screen" class="intro-screen">
-    <button id="startVideoBtn">Apri video</button>
+    <div>
+      <h1>Marco & Laura</h1>
+      <button id="startVideoBtn">Apri video</button>
+    </div>
   </div>
 
   <div id="video-container" class="video-container hidden">
@@ -31,24 +54,33 @@
     </video>
   </div>
 
+  <div id="invitation" class="invitation hidden">
+    <h1>Marco & Laura</h1>
+    <p>12 Giugno 2027</p>
+    <p>Benvenuti nel nostro sito di matrimonio 💕</p>
+  </div>
+
   <script>
     const startVideoBtn = document.getElementById("startVideoBtn");
     const introScreen = document.getElementById("intro-screen");
     const videoContainer = document.getElementById("video-container");
     const introVideo = document.getElementById("introVideo");
-
-    console.log("JS caricato");
+    const invitation = document.getElementById("invitation");
 
     startVideoBtn.addEventListener("click", () => {
-      console.log("Click ok");
       introScreen.classList.add("hidden");
       videoContainer.classList.remove("hidden");
-      introVideo.play().catch(err => console.log("Play error:", err));
+
+      introVideo.play().catch(err => {
+        console.log("Play error:", err);
+        videoContainer.classList.add("hidden");
+        invitation.classList.remove("hidden");
+      });
     });
 
     introVideo.addEventListener("ended", () => {
-      console.log("Video finito");
-      alert("Video terminato");
+      videoContainer.classList.add("hidden");
+      invitation.classList.remove("hidden");
     });
   </script>
 </body>
