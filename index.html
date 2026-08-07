@@ -12,22 +12,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div id="intro-screen" class="intro-screen">
-        <div class="intro-content">
-            <h1>Marco & Laura</h1>
-            <p>12 Giugno 2027</p>
-            <button id="startVideoBtn" class="open-btn">Apri l'invito</button>
-        </div>
+<div id="intro-screen" class="intro-screen">
+    <div class="intro-content">
+        <h1>Marco & Laura</h1>
+        <p>12 Giugno 2027</p>
+        <button id="startVideoBtn" class="open-btn">Apri l'invito</button>
     </div>
+</div>
 
-    <div id="video-container" class="video-container">
-        <video id="introVideo" playsinline autoplay muted preload="metadata">
-            <source src="video/Video_Busta.mp4" type="video/mp4">
-            Il tuo browser non supporta il video.
-        </video>
-    </div>
-   
+<div id="video-container" class="video-container hidden">
+    <video id="introVideo" playsinline preload="metadata">
+        <source src="video/Video_Busta.mp4" type="video/mp4">
+        Il tuo browser non supporta il video.
+    </video>
+</div>
+
+<div class="invitation hidden" id="invitation">
 
     <div class="invitation hidden" id="invitation">
         <header class="hero">
