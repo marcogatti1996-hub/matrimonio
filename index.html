@@ -7,23 +7,28 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="envelope-container">
-        <div class="envelope">
-            <div class="seal" id="openInvite">
-                M ♥ L
-            </div>
+    <div id="intro-screen" class="intro-screen">
+        <div class="intro-content">
+            <h1>Marco & Laura</h1>
+            <p>12 Giugno 2027</p>
+            <button id="startVideoBtn" class="open-btn">Apri l'invito</button>
         </div>
-        <p class="open-text">Tocca il sigillo per aprire l'invito</p>
+    </div>
+
+    <div id="video-container" class="video-container hidden">
+        <video id="introVideo" playsinline controls>
+            <source src="video/intro.mp4" type="video/mp4">
+            Il tuo browser non supporta il video.
+        </video>
     </div>
 
     <div class="invitation hidden" id="invitation">
-
         <header class="hero">
             <h1>Marco & Laura</h1>
             <p>12 Giugno 2027</p>
@@ -34,17 +39,14 @@
                     <span id="days">0</span>
                     <small>Giorni</small>
                 </div>
-
                 <div>
                     <span id="hours">0</span>
                     <small>Ore</small>
                 </div>
-
                 <div>
                     <span id="minutes">0</span>
                     <small>Minuti</small>
                 </div>
-
                 <div>
                     <span id="seconds">0</span>
                     <small>Secondi</small>
@@ -79,7 +81,6 @@
         <footer>
             Con amore ❤️ Marco & Laura
         </footer>
-
     </div>
 
     <script src="script.js"></script>
