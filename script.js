@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (timelineObserverInitialized) return;
     timelineObserverInitialized = true;
 
-    const timelineItems = document.querySelectorAll(".timeline-item");
+    const timelineItems = document.querySelectorAll(".timeline-luxury-item");
 
     if (!timelineItems.length) return;
 
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }, {
-      threshold: 0.15
+      threshold: 0.18
     });
 
     timelineItems.forEach((item) => {
