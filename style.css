@@ -3,46 +3,23 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   background: #fffaf7;
-  color: #333;
+}
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .hidden {
-  display: none;
-}
-
-.intro-screen,
-.video-container,
-.invitation {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.intro-content h1,
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-.open-btn {
-  margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #d4a373;
-  color: white;
-}
-
-.open-btn:hover {
-  background: #bc8a5f;
+  display: none !important;
 }
 
 video {
-  max-width: 90%;
-  max-height: 80vh;
+  width: 90%;
+  max-width: 700px;
   border-radius: 12px;
 }
