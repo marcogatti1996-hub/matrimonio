@@ -75,7 +75,8 @@ body {
     inset 0 1px 0 rgba(255,255,255,0.7);
 }
 
-.eyebrow {
+.eyebrow,
+.section-label {
   margin: 0 0 16px;
   text-transform: uppercase;
   letter-spacing: 0.28em;
@@ -83,7 +84,8 @@ body {
   color: #a07d4f;
 }
 
-.luxury-card h1 {
+.luxury-card h1,
+.hero-luxury h1 {
   margin: 0;
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(3rem, 7vw, 5.2rem);
@@ -92,19 +94,22 @@ body {
   color: #2e241c;
 }
 
-.luxury-card h1 span {
+.luxury-card h1 span,
+.hero-luxury h1 span {
   font-style: italic;
   color: #b08a55;
 }
 
-.divider {
+.divider,
+.hero-divider {
   width: 90px;
   height: 1px;
   margin: 24px auto;
   background: linear-gradient(to right, transparent, #c8a96b, transparent);
 }
 
-.date {
+.date,
+.site-date {
   margin: 0;
   font-family: 'Cormorant Garamond', serif;
   font-size: 2rem;
@@ -139,7 +144,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* VIDEO FULLSCREEN */
+/* VIDEO */
 .fullscreen-layer {
   position: fixed;
   inset: 0;
@@ -160,10 +165,8 @@ body {
   object-fit: contain;
   background: #000;
 }
-/* ========================= */
-/* SITO FINALE LUXURY        */
-/* ========================= */
 
+/* SITO FINALE */
 .invitation-screen {
   position: relative;
   overflow: hidden;
@@ -206,48 +209,13 @@ body {
   margin: 0 auto;
 }
 
-/* HERO */
 .hero-luxury {
   text-align: center;
   margin-bottom: 42px;
 }
 
-.eyebrow,
-.section-label {
-  text-transform: uppercase;
-  letter-spacing: 0.26em;
-  font-size: 0.78rem;
-  color: #a48154;
-  margin: 0 0 14px;
-}
-
 .hero-luxury h1 {
-  margin: 0;
-  font-family: 'Cormorant Garamond', serif;
   font-size: clamp(3.5rem, 8vw, 6.2rem);
-  line-height: 0.95;
-  font-weight: 600;
-  color: #2f241c;
-}
-
-.hero-luxury h1 span {
-  color: #b38a54;
-  font-style: italic;
-  font-weight: 500;
-}
-
-.hero-divider {
-  width: 120px;
-  height: 1px;
-  margin: 24px auto;
-  background: linear-gradient(to right, transparent, #c9a86a, transparent);
-}
-
-.site-date {
-  margin: 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.15rem;
-  color: #6f5845;
 }
 
 .welcome {
@@ -258,7 +226,6 @@ body {
   color: #65574b;
 }
 
-/* PANEL GENERICO */
 .luxury-panel {
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(212, 175, 55, 0.18);
@@ -270,7 +237,6 @@ body {
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* COUNTDOWN */
 .countdown-panel {
   padding: 36px 26px 34px;
   text-align: center;
@@ -326,7 +292,6 @@ body {
   color: #6f5d50;
 }
 
-/* DETTAGLI */
 .details-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -354,7 +319,6 @@ body {
   line-height: 1.7;
 }
 
-/* LOVE NOTE */
 .love-note {
   text-align: center;
   padding: 38px 28px;
@@ -377,7 +341,6 @@ body {
   font-size: 1.05rem;
 }
 
-/* RESPONSIVE */
 @media (max-width: 900px) {
   .countdown {
     grid-template-columns: repeat(2, 1fr);
@@ -393,13 +356,15 @@ body {
     padding: 54px 16px;
   }
 
-  .luxury-panel {
+  .luxury-panel,
+  .luxury-card {
     border-radius: 22px;
   }
 
   .countdown-panel,
   .detail-card,
-  .love-note {
+  .love-note,
+  .luxury-card {
     padding: 26px 18px;
   }
 
@@ -412,13 +377,20 @@ body {
     border-radius: 18px;
   }
 
-  .site-date {
+  .site-date,
+  .date {
     font-size: 1.7rem;
   }
 
   .welcome,
   .detail-card p,
-  .love-note p:last-child {
+  .love-note p:last-child,
+  .subtitle {
     font-size: 0.97rem;
+  }
+
+  .open-btn {
+    width: 100%;
+    max-width: 260px;
   }
 }
