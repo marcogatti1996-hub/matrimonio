@@ -7,43 +7,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let invitationShown = false;
 
-  function showVideoScreen() {
+  function showVideo() {
     introScreen.classList.add("hidden");
-    videoContainer.classList.remove("hidden");
     invitation.classList.add("hidden");
+    videoContainer.classList.remove("hidden");
   }
 
-  function showInvitationScreen() {
+  function showInvitation() {
     if (invitationShown) return;
     invitationShown = true;
 
-    introScreen.classList.add("hidden");
     videoContainer.classList.add("hidden");
+    introScreen.classList.add("hidden");
     invitation.classList.remove("hidden");
   }
 
   startVideoBtn.addEventListener("click", async () => {
-    showVideoScreen();
+    showVideo();
 
     try {
+      introVideo.currentTime = 0;
       await introVideo.play();
     } catch (error) {
-      console.log("Errore durante la riproduzione del video:", error);
+      console.log("Errore riproduzione video:", error);
     }
   });
 
-  introVideo.addEventListener("ended", () => {
-    showInvitationScreen();
+  introVideo.addEventListener("ended", showInvitation);
+
+  introVideo.addEventListener("timeupdate", () => {
+    if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.2) {
+      showInvitation();
+    }
   });
 
   introVideo.addEventListener("error", () => {
     console.log("Errore nel caricamento del video");
-    showInvitationScreen();
-  });
-
-  introVideo.addEventListener("timeupdate", () => {
-    if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.2) {
-      showInvitationScreen();
-    }
+    showInvitation();
   });
 });
