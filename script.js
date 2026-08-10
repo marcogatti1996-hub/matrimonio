@@ -1,24 +1,46 @@
-const startVideoBtn = document.getElementById("startVideoBtn");
-const introScreen = document.getElementById("intro-screen");
-const videoContainer = document.getElementById("video-container");
-const introVideo = document.getElementById("introVideo");
-const invitation = document.getElementById("invitation");
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco & Laura</title>
 
-if (startVideoBtn && introScreen && videoContainer && introVideo && invitation) {
-    startVideoBtn.addEventListener("click", () => {
-        introScreen.classList.add("hidden");
-        videoContainer.classList.remove("hidden");
+    style.css
+</head>
+<body>
 
-        introVideo.play().catch((error) => {
-            console.log("Errore nella riproduzione del video:", error);
-            videoContainer.classList.add("hidden");
-            invitation.classList.remove("hidden");
-        });
-    });
+    <!-- Schermata iniziale -->
+    <div id="intro-screen" class="intro-screen">
+        <div class="intro-content">
+            <h1>Marco & Laura</h1>
+            <p>12 Giugno 2027</p>
 
-    introVideo.addEventListener("ended", () => {
-        console.log("Video terminato");
-        videoContainer.classList.add("hidden");
-        invitation.classList.remove("hidden");
-    });
-}
+            <button id="startVideoBtn" class="open-btn">
+                Apri la busta
+            </button>
+        </div>
+    </div>
+
+    <!-- Video -->
+    <div id="video-container" class="video-container hidden">
+        <video id="introVideo" playsinline controls preload="metadata">
+            video/Video_Busta.mp4
+            Il tuo browser non supporta il video.
+        </video>
+    </div>
+
+    <!-- Invito -->
+    <div id="invitation" class="invitation hidden">
+
+        <section class="hero">
+            <h1>Marco & Laura</h1>
+            <p>12 Giugno 2027</p>
+            <p>Benvenuti nel nostro sito di matrimonio 💕</p>
+        </section>
+
+    </div>
+
+    script.jsscript>
+
+</body>
+</html>
