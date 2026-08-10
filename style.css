@@ -1,110 +1,48 @@
 body {
-    margin: 0;
-    font-family: 'Cormorant Garamond', serif;
-    background: #f9f5f0;
-    color: #3d2c2e;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #fffaf7;
+  color: #333;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
-.intro-screen {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(135deg, #f8efe8, #eadfd6);
-    padding: 20px;
+.intro-screen,
+.video-container,
+.invitation {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.intro-content h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.intro-content p {
-    font-size: 1.3rem;
-    margin-bottom: 25px;
+.intro-content h1,
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
 }
 
 .open-btn {
-    background: #8b5e5e;
-    color: white;
-    border: none;
-    padding: 14px 28px;
-    font-size: 1.1rem;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 0.3s ease;
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #d4a373;
+  color: white;
 }
 
 .open-btn:hover {
-    background: #6f4747;
+  background: #bc8a5f;
 }
 
-.video-container {
-    position: fixed;
-    inset: 0;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-.video-container video {
-    width: 100%;
-    max-width: 900px;
-    max-height: 100vh;
-}
-
-.invitation {
-    padding: 30px 20px;
-}
-
-.hero {
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.countdown {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.countdown div {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    min-width: 80px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.countdown span {
-    font-size: 2rem;
-    display: block;
-    font-weight: bold;
-}
-
-section {
-    max-width: 800px;
-    margin: 30px auto;
-    text-align: center;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-footer {
-    text-align: center;
-    padding: 40px 20px;
+video {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
 }
