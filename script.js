@@ -5,31 +5,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const startVideoBtn = document.getElementById("startVideoBtn");
   const introVideo = document.getElementById("introVideo");
 
+  const storySlider = document.getElementById("storySlider");
+  const storyPrev = document.getElementById("storyPrev");
+  const storyNext = document.getElementById("storyNext");
+
   let invitationShown = false;
   let countdownStarted = false;
   let countdownInterval = null;
-  let timelineObserverInitialized = false;
 
-  function initTimelineAnimation() {
-    if (timelineObserverInitialized) return;
-    timelineObserverInitialized = true;
+  function initStorySlider() {
+    if (!storySlider || !storyPrev || !storyNext) return;
 
-    const timelineItems = document.querySelectorAll(".timeline-luxury-item");
+    const getScrollAmount = () => {
+      const firstCard = storySlider.querySelector(".story-card");
+      if (!firstCard) return 340;
+      return firstCard.offsetWidth + 20;
+    };
 
-    if (!timelineItems.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
+    storyPrev.addEventListener("click", () => {
+      storySlider.scrollBy({
+        left: -getScrollAmount(),
+        behavior: "smooth"
       });
-    }, {
-      threshold: 0.18
     });
 
-    timelineItems.forEach((item) => {
-      observer.observe(item);
+    storyNext.addEventListener("click", () => {
+      storySlider.scrollBy({
+        left: getScrollAmount(),
+        behavior: "smooth"
+      });
     });
   }
 
@@ -100,15 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     invitation.classList.remove("hidden");
 
     startCountdown();
-    initTimelineAnimation();
-  }
-
-  if (!startVideoBtn) {
-    console.log("Bottone startVideoBtn non trovato");
-  }
-
-  if (!introVideo) {
-    console.log("Video introVideo non trovato");
+    initStorySlider();
   }
 
   if (startVideoBtn && introVideo) {
@@ -135,5 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Errore nel caricamento del video");
       showInvitation();
     });
+  } else {
+    console.log("Bottone o video non trovati nel DOM");
   }
 });
