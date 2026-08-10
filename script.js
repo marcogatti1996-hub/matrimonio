@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let invitationShown = false;
   let countdownStarted = false;
+  let countdownInterval = null;
 
   function startCountdown() {
     if (countdownStarted) return;
@@ -18,6 +19,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const secondsEl = document.getElementById("seconds");
     const countdownMessage = document.getElementById("countdown-message");
     const countdown = document.getElementById("countdown");
+
+    if (
+      !daysEl ||
+      !hoursEl ||
+      !minutesEl ||
+      !secondsEl ||
+      !countdownMessage ||
+      !countdown
+    ) {
+      console.log("Elementi countdown non trovati");
+      return;
+    }
 
     const weddingDate = new Date(2027, 9, 10, 0, 0, 0);
 
@@ -33,6 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         countdown.classList.add("hidden");
         countdownMessage.classList.remove("hidden");
+
+        if (countdownInterval) {
+          clearInterval(countdownInterval);
+        }
         return;
       }
 
@@ -48,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateCountdown();
-    setInterval(updateCountdown, 1000);
+    countdownInterval = setInterval(updateCountdown, 1000);
   }
 
   function showVideo() {
@@ -68,27 +85,33 @@ document.addEventListener("DOMContentLoaded", () => {
     startCountdown();
   }
 
-  startVideoBtn.addEventListener("click", async () => {
-    showVideo();
+  if (startVideoBtn && introVideo) {
+    startVideoBtn.addEventListener("click", async () => {
+      showVideo();
 
-    try {
-      introVideo.currentTime = 0;
-      await introVideo.play();
-    } catch (error) {
-      console.log("Errore riproduzione video:", error);
-    }
-  });
+      try {
+        introVideo.currentTime = 0;
+        await introVideo.play();
+      } catch (error) {
+        console.log("Errore riproduzione video:", error);
+      }
+    });
 
-  introVideo.addEventListener("ended", showInvitation);
-
-  introVideo.addEventListener("timeupdate", () => {
-    if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.2) {
+    introVideo.addEventListener("ended", () => {
       showInvitation();
-    }
-  });
+    });
 
-  introVideo.addEventListener("error", () => {
-    console.log("Errore nel caricamento del video");
-    showInvitation();
-  });
+    introVideo.addEventListener("timeupdate", () => {
+      if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.2) {
+        showInvitation();
+      }
+    });
+
+    introVideo.addEventListener("error", () => {
+      console.log("Errore nel caricamento del video");
+      showInvitation();
+    });
+  } else {
+    console.log("Bottone o video non trovati nel DOM");
+  }
 });
