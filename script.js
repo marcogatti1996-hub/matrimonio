@@ -20,14 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const countdownMessage = document.getElementById("countdown-message");
     const countdown = document.getElementById("countdown");
 
-    if (
-      !daysEl ||
-      !hoursEl ||
-      !minutesEl ||
-      !secondsEl ||
-      !countdownMessage ||
-      !countdown
-    ) {
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !countdownMessage || !countdown) {
       console.log("Elementi countdown non trovati");
       return;
     }
@@ -85,6 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
     startCountdown();
   }
 
+  if (!startVideoBtn) {
+    console.log("Bottone startVideoBtn non trovato");
+  }
+
+  if (!introVideo) {
+    console.log("Video introVideo non trovato");
+  }
+
   if (startVideoBtn && introVideo) {
     startVideoBtn.addEventListener("click", async () => {
       showVideo();
@@ -97,9 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    introVideo.addEventListener("ended", () => {
-      showInvitation();
-    });
+    introVideo.addEventListener("ended", showInvitation);
 
     introVideo.addEventListener("timeupdate", () => {
       if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.2) {
@@ -111,7 +110,5 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Errore nel caricamento del video");
       showInvitation();
     });
-  } else {
-    console.log("Bottone o video non trovati nel DOM");
   }
 });
