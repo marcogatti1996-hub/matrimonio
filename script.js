@@ -1,46 +1,23 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marco & Laura</title>
+document.addEventListener("DOMContentLoaded", () => {
+  const startVideoBtn = document.getElementById("startVideoBtn");
+  const introScreen = document.getElementById("intro-screen");
+  const videoContainer = document.getElementById("video-container");
+  const invitation = document.getElementById("invitation");
+  const introVideo = document.getElementById("introVideo");
 
-    style.css
-</head>
-<body>
+  startVideoBtn.addEventListener("click", async () => {
+    introScreen.classList.add("hidden");
+    videoContainer.classList.remove("hidden");
 
-    <!-- Schermata iniziale -->
-    <div id="intro-screen" class="intro-screen">
-        <div class="intro-content">
-            <h1>Marco & Laura</h1>
-            <p>12 Giugno 2027</p>
+    try {
+      await introVideo.play();
+    } catch (error) {
+      console.log("Autoplay bloccato dal browser:", error);
+    }
+  });
 
-            <button id="startVideoBtn" class="open-btn">
-                Apri la busta
-            </button>
-        </div>
-    </div>
-
-    <!-- Video -->
-    <div id="video-container" class="video-container hidden">
-        <video id="introVideo" playsinline controls preload="metadata">
-            video/Video_Busta.mp4
-            Il tuo browser non supporta il video.
-        </video>
-    </div>
-
-    <!-- Invito -->
-    <div id="invitation" class="invitation hidden">
-
-        <section class="hero">
-            <h1>Marco & Laura</h1>
-            <p>12 Giugno 2027</p>
-            <p>Benvenuti nel nostro sito di matrimonio 💕</p>
-        </section>
-
-    </div>
-
-    script.jsscript>
-
-</body>
-</html>
+  introVideo.addEventListener("ended", () => {
+    videoContainer.classList.add("hidden");
+    invitation.classList.remove("hidden");
+  });
+});
