@@ -8,6 +8,30 @@ document.addEventListener("DOMContentLoaded", () => {
   let invitationShown = false;
   let countdownStarted = false;
   let countdownInterval = null;
+  let timelineObserverInitialized = false;
+
+  function initTimelineAnimation() {
+    if (timelineObserverInitialized) return;
+    timelineObserverInitialized = true;
+
+    const timelineItems = document.querySelectorAll(".timeline-item");
+
+    if (!timelineItems.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    timelineItems.forEach((item) => {
+      observer.observe(item);
+    });
+  }
 
   function startCountdown() {
     if (countdownStarted) return;
@@ -76,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     invitation.classList.remove("hidden");
 
     startCountdown();
+    initTimelineAnimation();
   }
 
   if (!startVideoBtn) {
