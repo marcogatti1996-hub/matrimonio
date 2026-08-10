@@ -1,87 +1,46 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marco & Laura</title>
-  <style>
-    body { margin: 0; font-family: sans-serif; background: #f9f5f0; }
-    .hidden { display: none; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco & Laura</title>
 
-    .intro-screen {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: #eadfd6;
-    }
-
-    .video-container {
-      position: fixed;
-      inset: 0;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .video-container video {
-      width: 100%;
-      max-width: 900px;
-      max-height: 100vh;
-    }
-
-    .invitation {
-      padding: 40px 20px;
-      text-align: center;
-    }
-  </style>
+    style.css
 </head>
 <body>
 
-  <div id="intro-screen" class="intro-screen">
-    <div>
-      <h1>Marco & Laura</h1>
-      <button id="startVideoBtn">Apri video</button>
+    <!-- Schermata iniziale -->
+    <div id="intro-screen" class="intro-screen">
+        <div class="intro-content">
+            <h1>Marco & Laura</h1>
+            <p>12 Giugno 2027</p>
+
+            <button id="startVideoBtn" class="open-btn">
+                Apri la busta
+            </button>
+        </div>
     </div>
-  </div>
 
-  <div id="video-container" class="video-container hidden">
-    <video id="introVideo" playsinline controls preload="metadata">
-      <source src="video/Video_Busta.mp4" type="video/mp4">
-      Il tuo browser non supporta il video.
-    </video>
-  </div>
+    <!-- Video -->
+    <div id="video-container" class="video-container hidden">
+        <video id="introVideo" playsinline controls preload="metadata">
+            video/Video_Busta.mp4
+            Il tuo browser non supporta il video.
+        </video>
+    </div>
 
-  <div id="invitation" class="invitation hidden">
-    <h1>Marco & Laura</h1>
-    <p>12 Giugno 2027</p>
-    <p>Benvenuti nel nostro sito di matrimonio 💕</p>
-  </div>
+    <!-- Invito -->
+    <div id="invitation" class="invitation hidden">
 
-  <script>
-    const startVideoBtn = document.getElementById("startVideoBtn");
-    const introScreen = document.getElementById("intro-screen");
-    const videoContainer = document.getElementById("video-container");
-    const introVideo = document.getElementById("introVideo");
-    const invitation = document.getElementById("invitation");
+        <section class="hero">
+            <h1>Marco & Laura</h1>
+            <p>12 Giugno 2027</p>
+            <p>Benvenuti nel nostro sito di matrimonio 💕</p>
+        </section>
 
-    startVideoBtn.addEventListener("click", () => {
-      introScreen.classList.add("hidden");
-      videoContainer.classList.remove("hidden");
+    </div>
 
-      introVideo.play().catch(err => {
-        console.log("Play error:", err);
-        videoContainer.classList.add("hidden");
-        invitation.classList.remove("hidden");
-      });
-    });
+    script.jsscript>
 
-    introVideo.addEventListener("ended", () => {
-      videoContainer.classList.add("hidden");
-      invitation.classList.remove("hidden");
-    });
-  </script>
 </body>
 </html>
