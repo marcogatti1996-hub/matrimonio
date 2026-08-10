@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -87,83 +87,71 @@
           <p class="section-label">La nostra storia</p>
           <h2>Un viaggio d’amore, tappa dopo tappa</h2>
           <p class="story-intro">
-            Ci sono emozioni, incontri e promesse che trasformano il tempo
-            in una storia da custodire per sempre.
+            Alcuni momenti restano per sempre: incontri, sorrisi, promesse e sogni
+            che ci hanno accompagnati fino a qui.
           </p>
         </div>
 
-        <div class="timeline-luxury">
-          <div class="timeline-center-line"></div>
+        <div class="story-slider-wrapper">
+          <button class="story-nav story-nav-left" id="storyPrev" aria-label="Scorri a sinistra">
+            ‹
+          </button>
 
-          <article class="timeline-luxury-item left">
-            <div class="timeline-luxury-marker">
-              <span>01</span>
-            </div>
-            <div class="timeline-luxury-card">
-              <span class="timeline-luxury-date">Maggio 2019</span>
+          <div class="story-slider" id="storySlider">
+            <article class="story-card">
+              <span class="story-step">01</span>
+              <span class="story-date">Maggio 2019</span>
               <h3>Il primo incontro</h3>
               <p>
-                Ci siamo incrociati quasi per caso, senza sapere che da quel momento
+                Ci siamo incontrati quasi per caso, senza immaginare che da quel momento
                 sarebbe iniziato il capitolo più bello della nostra vita.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="timeline-luxury-item right">
-            <div class="timeline-luxury-marker">
-              <span>02</span>
-            </div>
-            <div class="timeline-luxury-card">
-              <span class="timeline-luxury-date">Settembre 2019</span>
+            <article class="story-card">
+              <span class="story-step">02</span>
+              <span class="story-date">Settembre 2019</span>
               <h3>Il primo viaggio insieme</h3>
               <p>
-                Un viaggio fatto di sorrisi, scoperte e piccoli istanti che ci hanno
-                fatto capire quanto fosse speciale costruire ricordi insieme.
+                Il primo di tanti viaggi, fatto di sorrisi, scoperte e della certezza
+                che insieme tutto avesse un sapore più bello.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="timeline-luxury-item left">
-            <div class="timeline-luxury-marker">
-              <span>03</span>
-            </div>
-            <div class="timeline-luxury-card">
-              <span class="timeline-luxury-date">Giugno 2022</span>
+            <article class="story-card">
+              <span class="story-step">03</span>
+              <span class="story-date">Giugno 2022</span>
               <h3>Una vita condivisa</h3>
               <p>
-                Nel tempo abbiamo costruito abitudini, sogni e quotidianità,
-                scoprendo ogni giorno la bellezza dello stare l’uno accanto all’altra.
+                Con il tempo abbiamo costruito abitudini, sogni e piccoli gesti quotidiani
+                che hanno reso sempre più forte il nostro amore.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="timeline-luxury-item right">
-            <div class="timeline-luxury-marker">
-              <span>04</span>
-            </div>
-            <div class="timeline-luxury-card">
-              <span class="timeline-luxury-date">Dicembre 2025</span>
+            <article class="story-card">
+              <span class="story-step">04</span>
+              <span class="story-date">Dicembre 2025</span>
               <h3>La proposta</h3>
               <p>
-                Un momento pieno di emozione, custodito nel cuore,
-                che ci ha accompagnati verso il nostro sì più importante.
+                Un momento emozionante, custodito nel cuore, che ci ha portati a dire
+                il nostro più bello: sì, per sempre.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="timeline-luxury-item left">
-            <div class="timeline-luxury-marker">
-              <span>05</span>
-            </div>
-            <div class="timeline-luxury-card">
-              <span class="timeline-luxury-date">10 Ottobre 2027</span>
+            <article class="story-card">
+              <span class="story-step">05</span>
+              <span class="story-date">10 Ottobre 2027</span>
               <h3>Il nostro grande giorno</h3>
               <p>
-                Il giorno in cui celebreremo il nostro amore circondati dalle persone
-                più care, rendendo eterno ogni istante condiviso.
+                Il giorno in cui celebreremo il nostro amore insieme alle persone
+                che più amiamo.
               </p>
-            </div>
-          </article>
+            </article>
+          </div>
+
+          <button class="story-nav story-nav-right" id="storyNext" aria-label="Scorri a destra">
+            ›
+          </button>
         </div>
       </section>
 
