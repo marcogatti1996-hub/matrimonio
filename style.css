@@ -252,10 +252,7 @@ body {
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* ========================= */
-/* COUNTDOWN                 */
-/* ========================= */
-
+/* COUNTDOWN */
 .countdown-panel {
   padding: 36px 26px 34px;
   text-align: center;
@@ -311,10 +308,7 @@ body {
   color: #6f5d50;
 }
 
-/* ========================= */
-/* EVENT SECTION UNICA       */
-/* ========================= */
-
+/* EVENT SECTION */
 .event-section {
   padding: 38px 28px;
   margin-bottom: 28px;
@@ -340,10 +334,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.event-block + .event-block {
-  margin-top: 26px;
 }
 
 .event-block h3 {
@@ -397,6 +387,11 @@ body {
   border: 1px solid rgba(212, 175, 55, 0.22);
 }
 
+.rsvp-btn {
+  background: linear-gradient(135deg, #c9a46a 0%, #a97b45 100%);
+  color: #fff;
+}
+
 .map-preview {
   min-height: 420px;
   border-radius: 24px;
@@ -415,10 +410,7 @@ body {
   display: block;
 }
 
-/* ========================= */
-/* LOVE NOTE                 */
-/* ========================= */
-
+/* LOVE NOTE */
 .love-note {
   text-align: center;
   padding: 38px 28px;
@@ -441,10 +433,7 @@ body {
   font-size: 1.05rem;
 }
 
-/* ========================= */
-/* RESPONSIVE                */
-/* ========================= */
-
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .countdown {
     grid-template-columns: repeat(2, 1fr);
