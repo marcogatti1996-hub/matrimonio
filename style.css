@@ -84,31 +84,24 @@ body {
   color: #a07d4f;
 }
 
-/* TITOLO INTRO */
-.luxury-card h1 {
-  margin: 0;
-  font-family: 'Allura', cursive;
-  font-size: clamp(3.8rem, 6.5vw, 6.2rem);
-  line-height: 0.98;
-  font-weight: 400;
-  color: #000000;
-  white-space: nowrap;
-}
-
-/* TITOLO HERO FINALE */
+.luxury-card h1,
 .hero-luxury h1 {
   margin: 0;
-  font-family: 'Allura', cursive;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.8rem, 6.5vw, 6.2rem);
+  line-height: 0.95;
+  font-weight: 600;
+  color: #2e241c;
+}
+
+.hero-luxury h1 {
   font-size: clamp(4.8rem, 9vw, 7.6rem);
-  line-height: 1.02;
-  font-weight: 400;
-  color: #000000;
 }
 
 .luxury-card h1 span,
 .hero-luxury h1 span {
-  color: #000000;
-  font-style: normal;
+  font-style: italic;
+  color: #b08a55;
 }
 
 .divider,
@@ -396,7 +389,6 @@ body {
   z-index: 1;
 }
 
-/* FOTO STILE POLAROID */
 .story-photo {
   position: relative;
   background: #fff;
@@ -444,7 +436,6 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* CORREZIONE INQUADRATURA FOTO 1 E FOTO 4 */
 .photo-lower-1 {
   object-position: center 30%;
 }
