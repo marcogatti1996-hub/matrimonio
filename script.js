@@ -5,40 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const startVideoBtn = document.getElementById("startVideoBtn");
   const introVideo = document.getElementById("introVideo");
 
-  const storySlider = document.getElementById("storySlider");
-  const storyPrev = document.getElementById("storyPrev");
-  const storyNext = document.getElementById("storyNext");
-
   let invitationShown = false;
   let countdownStarted = false;
   let countdownInterval = null;
 
   function wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
-  function initStorySlider() {
-    if (!storySlider || !storyPrev || !storyNext) return;
-
-    const getScrollAmount = () => {
-      const firstCard = storySlider.querySelector(".story-card");
-      if (!firstCard) return 340;
-      return firstCard.offsetWidth + 20;
-    };
-
-    storyPrev.addEventListener("click", () => {
-      storySlider.scrollBy({
-        left: -getScrollAmount(),
-        behavior: "smooth"
-      });
-    });
-
-    storyNext.addEventListener("click", () => {
-      storySlider.scrollBy({
-        left: getScrollAmount(),
-        behavior: "smooth"
-      });
-    });
   }
 
   function startCountdown() {
@@ -112,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
     invitation.classList.remove("hidden");
 
     startCountdown();
-    initStorySlider();
   }
 
   if (startVideoBtn && introVideo) {
