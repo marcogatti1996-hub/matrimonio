@@ -87,17 +87,17 @@ body {
 .luxury-card h1,
 .hero-luxury h1 {
   margin: 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 7vw, 5.2rem);
-  line-height: 0.95;
-  font-weight: 600;
-  color: #2e241c;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(4rem, 9vw, 7rem);
+  line-height: 1.05;
+  font-weight: 400;
+  color: #000000;
 }
 
 .luxury-card h1 span,
 .hero-luxury h1 span {
-  font-style: italic;
-  color: #b08a55;
+  color: #000000;
+  font-style: normal;
 }
 
 .divider,
@@ -228,7 +228,7 @@ body {
 }
 
 .hero-luxury h1 {
-  font-size: clamp(3.5rem, 8vw, 6.2rem);
+  font-size: clamp(4.5rem, 10vw, 8rem);
 }
 
 .welcome {
@@ -439,11 +439,11 @@ body {
 
 /* CORREZIONE INQUADRATURA FOTO 1 E FOTO 4 */
 .photo-lower-1 {
-  object-position: center 10%;
+  object-position: center 30%;
 }
 
 .photo-lower-4 {
-  object-position: center 10%;
+  object-position: center 28%;
 }
 
 .story-content {
@@ -758,5 +758,10 @@ body {
   .open-btn {
     width: 100%;
     max-width: 260px;
+  }
+
+  .luxury-card h1,
+  .hero-luxury h1 {
+    font-size: clamp(3.6rem, 12vw, 5.4rem);
   }
 }
