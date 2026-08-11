@@ -12,9 +12,32 @@ document.addEventListener("DOMContentLoaded", () => {
   let invitationShown = false;
   let countdownStarted = false;
   let countdownInterval = null;
+  let storySliderInitialized = false;
+  let revealInitialized = false;
+
+  function wait(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function hideSection(section) {
+    if (!section) return;
+    section.classList.add("hidden-state");
+    section.setAttribute("aria-hidden", "true");
+    await wait(700);
+  }
+
+  async function showSection(section) {
+    if (!section) return;
+    section.classList.remove("hidden-state");
+    section.setAttribute("aria-hidden", "false");
+    await wait(30);
+  }
 
   function initStorySlider() {
+    if (storySliderInitialized) return;
     if (!storySlider || !storyPrev || !storyNext) return;
+
+    storySliderInitialized = true;
 
     const getScrollAmount = () => {
       const firstCard = storySlider.querySelector(".story-card");
@@ -37,6 +60,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function initRevealAnimations() {
+    if (revealInitialized) return;
+    revealInitialized = true;
+
+    const reveals = document.querySelectorAll(".reveal");
+    if (!reveals.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    reveals.forEach((el) => observer.observe(el));
+  }
+
   function startCountdown() {
     if (countdownStarted) return;
     countdownStarted = true;
@@ -49,11 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const countdown = document.getElementById("countdown");
 
     if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !countdownMessage || !countdown) {
-      console.log("Elementi countdown non trovati");
       return;
     }
 
-    const weddingDate = new Date(2027, 9, 10, 0, 0, 0);
+    const weddingDate = new Date(2027, 9, 10, 12, 0, 0);
 
     function updateCountdown() {
       const now = new Date();
@@ -70,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (countdownInterval) {
           clearInterval(countdownInterval);
+          countdownInterval = null;
         }
         return;
       }
@@ -89,49 +133,68 @@ document.addEventListener("DOMContentLoaded", () => {
     countdownInterval = setInterval(updateCountdown, 1000);
   }
 
-  function showVideo() {
-    introScreen.classList.add("hidden");
-    invitation.classList.add("hidden");
-    videoContainer.classList.remove("hidden");
+  async function showVideo() {
+    await hideSection(introScreen);
+    await showSection(videoContainer);
   }
 
-  function showInvitation() {
+  async function showInvitation() {
     if (invitationShown) return;
     invitationShown = true;
 
-    videoContainer.classList.add("hidden");
-    introScreen.classList.add("hidden");
-    invitation.classList.remove("hidden");
+    if (introVideo && !introVideo.paused) {
+      introVideo.pause();
+    }
+
+    await hideSection(videoContainer);
+    await showSection(invitation);
 
     startCountdown();
     initStorySlider();
+    initRevealAnimations();
   }
 
   if (startVideoBtn && introVideo) {
     startVideoBtn.addEventListener("click", async () => {
-      showVideo();
+      startVideoBtn.disabled = true;
+      await showVideo();
+
+      let fallbackTriggered = false;
+
+      const fallbackTimeout = setTimeout(() => {
+        fallbackTriggered = true;
+        showInvitation();
+      }, 12000);
 
       try {
         introVideo.currentTime = 0;
         await introVideo.play();
       } catch (error) {
-        console.log("Errore riproduzione video:", error);
-      }
-    });
-
-    introVideo.addEventListener("ended", showInvitation);
-
-    introVideo.addEventListener("timeupdate", () => {
-      if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.2) {
+        clearTimeout(fallbackTimeout);
         showInvitation();
       }
-    });
 
-    introVideo.addEventListener("error", () => {
-      console.log("Errore nel caricamento del video");
-      showInvitation();
+      introVideo.addEventListener("ended", () => {
+        if (fallbackTriggered) return;
+        clearTimeout(fallbackTimeout);
+        showInvitation();
+      }, { once: true });
+
+      introVideo.addEventListener("error", () => {
+        clearTimeout(fallbackTimeout);
+        showInvitation();
+      }, { once: true });
+
+      introVideo.addEventListener("timeupdate", () => {
+        if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.15) {
+          clearTimeout(fallbackTimeout);
+          showInvitation();
+        }
+      });
     });
-  } else {
-    console.log("Bottone o video non trovati nel DOM");
   }
+
+  introScreen.classList.add("screen-state");
+  videoContainer.classList.add("screen-state");
+  invitation.classList.add("screen-state");
 });
