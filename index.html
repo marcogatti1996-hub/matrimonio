@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marco & Laura</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +13,8 @@
 </head>
 <body>
 
-  <!-- SCHERMATA INIZIALE -->
-  <section id="intro-screen" class="screen intro-screen is-visible">
+  <!-- INTRO -->
+  <section id="intro-screen" class="screen intro-screen">
     <div class="luxury-card">
       <p class="eyebrow">Wedding Invitation</p>
       <h1>Marco <span>&</span> Laura</h1>
@@ -35,7 +34,7 @@
   </section>
 
   <!-- VIDEO -->
-  <section id="video-container" class="fullscreen-layer hidden-state" aria-hidden="true">
+  <section id="video-container" class="fullscreen-layer hidden" aria-hidden="true">
     <video
       id="introVideo"
       class="fullscreen-video"
@@ -49,7 +48,7 @@
   </section>
 
   <!-- SITO FINALE -->
-  <section id="invitation" class="screen invitation-screen hidden-state hidden-display" aria-hidden="true">
+  <section id="invitation" class="screen invitation-screen hidden" aria-hidden="true">
     <div class="invitation-bg-glow invitation-bg-glow-1"></div>
     <div class="invitation-bg-glow invitation-bg-glow-2"></div>
 
@@ -103,9 +102,7 @@
         </div>
 
         <div class="story-slider-wrapper">
-          <button class="story-nav story-nav-left" id="storyPrev" aria-label="Scorri a sinistra" type="button">
-            ‹
-          </button>
+          <button class="story-nav story-nav-left" id="storyPrev" aria-label="Scorri a sinistra" type="button">‹</button>
 
           <div class="story-slider" id="storySlider">
             <article class="story-card">
@@ -159,9 +156,7 @@
             </article>
           </div>
 
-          <button class="story-nav story-nav-right" id="storyNext" aria-label="Scorri a destra" type="button">
-            ›
-          </button>
+          <button class="story-nav story-nav-right" id="storyNext" aria-label="Scorri a destra" type="button">›</button>
         </div>
       </section>
 
@@ -216,10 +211,6 @@
           <div class="map-preview">
             <iframe
               src="https://www.google.com/maps?q=Villa+Malliana+Viale+Alcide+de+Gasperi+4+24030+Almenno+San+Bartolomeo+BG&output=embed"
-              width="100%"
-              height="100%"
-              style="border:0;"
-              allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               title="Mappa Villa Malliana">
