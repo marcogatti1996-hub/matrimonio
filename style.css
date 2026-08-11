@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   margin: 0;
@@ -14,6 +18,11 @@ body {
   color: #2f2a26;
 }
 
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .hidden {
   display: none !important;
 }
@@ -21,6 +30,26 @@ body {
 .screen {
   width: 100%;
   min-height: 100vh;
+}
+
+/* STATO VISIBILITÀ CON FADE */
+.screen-state {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.hidden-state {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 /* INTRO */
@@ -125,20 +154,23 @@ body {
 
 .open-btn {
   margin-top: 34px;
-  padding: 14px 34px;
+  padding: 15px 34px;
   border: none;
   border-radius: 999px;
   background: linear-gradient(135deg, #d8b57a 0%, #b58a52 100%);
   color: white;
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
   box-shadow:
     0 10px 24px rgba(181, 138, 82, 0.35),
     inset 0 1px 0 rgba(255,255,255,0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
 }
 
 .open-btn:hover {
@@ -146,6 +178,14 @@ body {
   box-shadow:
     0 14px 28px rgba(181, 138, 82, 0.42),
     inset 0 1px 0 rgba(255,255,255,0.35);
+  filter: brightness(1.03);
+}
+
+.open-btn:focus-visible,
+.story-nav:focus-visible,
+.map-btn:focus-visible {
+  outline: 2px solid rgba(176, 138, 85, 0.7);
+  outline-offset: 3px;
 }
 
 /* VIDEO */
@@ -239,6 +279,18 @@ body {
     inset 0 1px 0 rgba(255,255,255,0.72);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* COUNTDOWN */
