@@ -439,11 +439,11 @@ body {
 
 /* CORREZIONE INQUADRATURA FOTO 1 E FOTO 4 */
 .photo-lower-1 {
-  object-position: center 30%;
+  object-position: center 10%;
 }
 
 .photo-lower-4 {
-  object-position: center 28%;
+  object-position: center 10%;
 }
 
 .story-content {
