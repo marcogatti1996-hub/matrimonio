@@ -14,33 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let countdownInterval = null;
   let storySliderInitialized = false;
   let revealInitialized = false;
-  let videoTimeout = null;
+  let fallbackTimeout = null;
 
   function wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
-  async function fadeOutAndHide(element, displayNone = false) {
-    if (!element) return;
-
-    element.classList.add("hidden-state");
-    element.setAttribute("aria-hidden", "true");
-
-    await wait(700);
-
-    if (displayNone) {
-      element.classList.add("hidden-display");
-    }
-  }
-
-  async function showWithFade(element) {
-    if (!element) return;
-
-    element.classList.remove("hidden-display");
-    await wait(20);
-
-    element.classList.remove("hidden-state");
-    element.setAttribute("aria-hidden", "false");
   }
 
   function initStorySlider() {
@@ -144,10 +121,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function startVideoFlow() {
+    if (!introScreen || !videoContainer || !introVideo) return;
+
     startVideoBtn.disabled = true;
 
-    await fadeOutAndHide(introScreen, true);
-    await showWithFade(videoContainer);
+    introScreen.classList.add("fade-out");
+    await wait(700);
+
+    introScreen.classList.add("hidden");
+    introScreen.setAttribute("aria-hidden", "true");
+
+    videoContainer.classList.remove("hidden");
+    videoContainer.setAttribute("aria-hidden", "false");
 
     try {
       introVideo.currentTime = 0;
@@ -157,26 +142,38 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    videoTimeout = setTimeout(() => {
+    fallbackTimeout = setTimeout(() => {
       showInvitationOnly();
-    }, 12000);
+    }, 15000);
   }
 
   async function showInvitationOnly() {
     if (invitationShown) return;
     invitationShown = true;
 
-    if (videoTimeout) {
-      clearTimeout(videoTimeout);
-      videoTimeout = null;
+    if (fallbackTimeout) {
+      clearTimeout(fallbackTimeout);
+      fallbackTimeout = null;
     }
 
     if (introVideo) {
       introVideo.pause();
     }
 
-    await fadeOutAndHide(videoContainer, true);
-    await showWithFade(invitation);
+    if (videoContainer && !videoContainer.classList.contains("hidden")) {
+      videoContainer.classList.add("fade-out");
+      await wait(700);
+      videoContainer.classList.add("hidden");
+      videoContainer.setAttribute("aria-hidden", "true");
+      videoContainer.classList.remove("fade-out");
+    }
+
+    invitation.classList.remove("hidden");
+    invitation.setAttribute("aria-hidden", "false");
+
+    requestAnimationFrame(() => {
+      invitation.classList.add("fade-in");
+    });
 
     startCountdown();
     initStorySlider();
