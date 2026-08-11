@@ -27,17 +27,19 @@ body {
   display: none !important;
 }
 
+.hidden-display {
+  display: none !important;
+}
+
 .screen {
   width: 100%;
   min-height: 100vh;
 }
 
-/* STATO VISIBILITÀ CON FADE */
-.screen-state {
+.is-visible {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transition: opacity 0.7s ease, visibility 0.7s ease;
 }
 
 .hidden-state {
@@ -46,10 +48,10 @@ body {
   pointer-events: none;
 }
 
-.is-visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+.intro-screen,
+.fullscreen-layer,
+.invitation-screen {
+  transition: opacity 0.7s ease, visibility 0.7s ease;
 }
 
 /* INTRO */
@@ -349,7 +351,7 @@ body {
   color: #6f5d50;
 }
 
-/* STORY SECTION */
+/* STORY */
 .story-section {
   padding: 44px 28px;
   margin-bottom: 28px;
