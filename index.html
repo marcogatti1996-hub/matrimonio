@@ -13,7 +13,7 @@
 </head>
 <body>
 
-  <!-- INTRO -->
+  <!-- SCHERMATA INIZIALE -->
   <section id="intro-screen" class="screen intro-screen">
     <div class="luxury-card">
       <p class="eyebrow">Wedding Invitation</p>
@@ -22,38 +22,27 @@
       <p class="date">10 Ottobre 2027</p>
       <p class="subtitle">Siete invitati ad aprire la nostra busta digitale</p>
 
-      <button
-        id="startVideoBtn"
-        class="open-btn"
-        aria-label="Apri la busta digitale"
-        type="button"
-      >
+      <button id="startVideoBtn" class="open-btn">
         Apri la busta
       </button>
     </div>
   </section>
 
   <!-- VIDEO -->
-  <section id="video-container" class="fullscreen-layer hidden" aria-hidden="true">
-    <video
-      id="introVideo"
-      class="fullscreen-video"
-      playsinline
-      webkit-playsinline
-      preload="auto"
-    >
+  <section id="video-container" class="fullscreen-layer hidden">
+    <video id="introVideo" class="fullscreen-video" playsinline preload="auto" controls>
       <source src="video/Video_Busta.mp4" type="video/mp4">
       Il tuo browser non supporta il video.
     </video>
   </section>
 
   <!-- SITO FINALE -->
-  <section id="invitation" class="screen invitation-screen hidden" aria-hidden="true">
+  <section id="invitation" class="screen invitation-screen hidden">
     <div class="invitation-bg-glow invitation-bg-glow-1"></div>
     <div class="invitation-bg-glow invitation-bg-glow-2"></div>
 
     <div class="site-shell">
-      <header class="hero-luxury reveal">
+      <header class="hero-luxury">
         <p class="eyebrow">Wedding Day</p>
         <h1>Marco <span>&</span> Laura</h1>
         <div class="hero-divider"></div>
@@ -63,7 +52,8 @@
         </p>
       </header>
 
-      <section class="luxury-panel countdown-panel reveal">
+      <!-- COUNTDOWN -->
+      <section class="luxury-panel countdown-panel">
         <p class="section-label">Countdown</p>
         <h2>Il grande giorno si avvicina</h2>
 
@@ -91,7 +81,8 @@
         </p>
       </section>
 
-      <section class="luxury-panel story-section reveal">
+      <!-- CRONOSTORIA LUXURY -->
+      <section class="luxury-panel story-section">
         <div class="story-header">
           <p class="section-label">La nostra storia</p>
           <h2>Un viaggio d’amore, tappa dopo tappa</h2>
@@ -102,7 +93,9 @@
         </div>
 
         <div class="story-slider-wrapper">
-          <button class="story-nav story-nav-left" id="storyPrev" aria-label="Scorri a sinistra" type="button">‹</button>
+          <button class="story-nav story-nav-left" id="storyPrev" aria-label="Scorri a sinistra">
+            ‹
+          </button>
 
           <div class="story-slider" id="storySlider">
             <article class="story-card">
@@ -156,11 +149,14 @@
             </article>
           </div>
 
-          <button class="story-nav story-nav-right" id="storyNext" aria-label="Scorri a destra" type="button">›</button>
+          <button class="story-nav story-nav-right" id="storyNext" aria-label="Scorri a destra">
+            ›
+          </button>
         </div>
       </section>
 
-      <section class="luxury-panel event-section reveal">
+      <!-- EVENTO -->
+      <section class="luxury-panel event-section">
         <p class="section-label">Dettagli del giorno</p>
         <h2>Vi aspettiamo a Villa Malliana</h2>
 
@@ -211,15 +207,19 @@
           <div class="map-preview">
             <iframe
               src="https://www.google.com/maps?q=Villa+Malliana+Viale+Alcide+de+Gasperi+4+24030+Almenno+San+Bartolomeo+BG&output=embed"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Mappa Villa Malliana">
+              referrerpolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
         </div>
       </section>
 
-      <section class="luxury-panel love-note reveal">
+      <!-- MESSAGGIO FINALE -->
+      <section class="luxury-panel love-note">
         <p class="section-label">Un pensiero</p>
         <h2>Non vediamo l’ora di condividere questo giorno con voi</h2>
         <p>
