@@ -28,7 +28,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 24px;
+  padding: 16px;
   position: relative;
   overflow: hidden;
 }
@@ -61,15 +61,15 @@ body {
 .luxury-card {
   position: relative;
   z-index: 2;
-  width: 100%;
-  max-width: 820px;
+  width: min(96vw, 980px);
+  max-width: 980px;
   text-align: center;
   background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(212, 175, 55, 0.24);
   border-radius: 28px;
-  padding: 60px 24px;
+  padding: 56px 18px;
   box-shadow:
     0 20px 60px rgba(80, 55, 30, 0.12),
     inset 0 1px 0 rgba(255,255,255,0.7);
@@ -84,18 +84,26 @@ body {
   color: #a07d4f;
 }
 
-.luxury-card h1,
+/* TITOLO INTRO */
+.luxury-card h1 {
+  margin: 0;
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(3.1rem, 6.2vw, 5.6rem);
+  line-height: 0.98;
+  font-weight: 400;
+  color: #000000;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+/* TITOLO HERO FINALE */
 .hero-luxury h1 {
   margin: 0;
   font-family: 'Alex Brush', cursive;
-  font-size: clamp(3.4rem, 7vw, 5.8rem);
+  font-size: clamp(4.2rem, 9vw, 7.2rem);
   line-height: 1.02;
   font-weight: 400;
   color: #000000;
-}
-
-.luxury-card h1 {
-  white-space: nowrap;
 }
 
 .luxury-card h1 span,
@@ -229,10 +237,6 @@ body {
 .hero-luxury {
   text-align: center;
   margin-bottom: 42px;
-}
-
-.hero-luxury h1 {
-  font-size: clamp(4.8rem, 10vw, 8.2rem);
 }
 
 .welcome {
@@ -683,6 +687,29 @@ body {
   .story-photo img {
     height: 260px;
   }
+
+  .luxury-card {
+    width: min(96vw, 860px);
+    padding: 50px 18px;
+  }
+
+  .luxury-card h1 {
+    font-size: clamp(2.8rem, 7vw, 4.8rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .luxury-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 42px 18px;
+  }
+
+  .luxury-card h1 {
+    white-space: normal;
+    font-size: clamp(3.2rem, 12vw, 4.9rem);
+    line-height: 1.02;
+  }
 }
 
 @media (max-width: 560px) {
@@ -766,6 +793,6 @@ body {
 
   .luxury-card h1,
   .hero-luxury h1 {
-    font-size: clamp(3.8rem, 12vw, 5.8rem);
+    font-size: clamp(3.6rem, 12vw, 5.4rem);
   }
 }
