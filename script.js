@@ -14,23 +14,33 @@ document.addEventListener("DOMContentLoaded", () => {
   let countdownInterval = null;
   let storySliderInitialized = false;
   let revealInitialized = false;
+  let videoTimeout = null;
 
   function wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  async function hideSection(section) {
-    if (!section) return;
-    section.classList.add("hidden-state");
-    section.setAttribute("aria-hidden", "true");
+  async function fadeOutAndHide(element, displayNone = false) {
+    if (!element) return;
+
+    element.classList.add("hidden-state");
+    element.setAttribute("aria-hidden", "true");
+
     await wait(700);
+
+    if (displayNone) {
+      element.classList.add("hidden-display");
+    }
   }
 
-  async function showSection(section) {
-    if (!section) return;
-    section.classList.remove("hidden-state");
-    section.setAttribute("aria-hidden", "false");
-    await wait(30);
+  async function showWithFade(element) {
+    if (!element) return;
+
+    element.classList.remove("hidden-display");
+    await wait(20);
+
+    element.classList.remove("hidden-state");
+    element.setAttribute("aria-hidden", "false");
   }
 
   function initStorySlider() {
@@ -67,11 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const reveals = document.querySelectorAll(".reveal");
     if (!reveals.length) return;
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+          obs.unobserve(entry.target);
         }
       });
     }, {
@@ -133,68 +143,62 @@ document.addEventListener("DOMContentLoaded", () => {
     countdownInterval = setInterval(updateCountdown, 1000);
   }
 
-  async function showVideo() {
-    await hideSection(introScreen);
-    await showSection(videoContainer);
+  async function startVideoFlow() {
+    startVideoBtn.disabled = true;
+
+    await fadeOutAndHide(introScreen, true);
+    await showWithFade(videoContainer);
+
+    try {
+      introVideo.currentTime = 0;
+      await introVideo.play();
+    } catch (error) {
+      await showInvitationOnly();
+      return;
+    }
+
+    videoTimeout = setTimeout(() => {
+      showInvitationOnly();
+    }, 12000);
   }
 
-  async function showInvitation() {
+  async function showInvitationOnly() {
     if (invitationShown) return;
     invitationShown = true;
 
-    if (introVideo && !introVideo.paused) {
+    if (videoTimeout) {
+      clearTimeout(videoTimeout);
+      videoTimeout = null;
+    }
+
+    if (introVideo) {
       introVideo.pause();
     }
 
-    await hideSection(videoContainer);
-    await showSection(invitation);
+    await fadeOutAndHide(videoContainer, true);
+    await showWithFade(invitation);
 
     startCountdown();
     initStorySlider();
     initRevealAnimations();
-  }
 
-  if (startVideoBtn && introVideo) {
-    startVideoBtn.addEventListener("click", async () => {
-      startVideoBtn.disabled = true;
-      await showVideo();
-
-      let fallbackTriggered = false;
-
-      const fallbackTimeout = setTimeout(() => {
-        fallbackTriggered = true;
-        showInvitation();
-      }, 12000);
-
-      try {
-        introVideo.currentTime = 0;
-        await introVideo.play();
-      } catch (error) {
-        clearTimeout(fallbackTimeout);
-        showInvitation();
-      }
-
-      introVideo.addEventListener("ended", () => {
-        if (fallbackTriggered) return;
-        clearTimeout(fallbackTimeout);
-        showInvitation();
-      }, { once: true });
-
-      introVideo.addEventListener("error", () => {
-        clearTimeout(fallbackTimeout);
-        showInvitation();
-      }, { once: true });
-
-      introVideo.addEventListener("timeupdate", () => {
-        if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.15) {
-          clearTimeout(fallbackTimeout);
-          showInvitation();
-        }
-      });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
   }
 
-  introScreen.classList.add("screen-state");
-  videoContainer.classList.add("screen-state");
-  invitation.classList.add("screen-state");
+  if (startVideoBtn && introVideo) {
+    startVideoBtn.addEventListener("click", startVideoFlow);
+
+    introVideo.addEventListener("ended", showInvitationOnly);
+
+    introVideo.addEventListener("error", showInvitationOnly);
+
+    introVideo.addEventListener("timeupdate", () => {
+      if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.15) {
+        showInvitationOnly();
+      }
+    });
+  }
 });
