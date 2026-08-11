@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let countdownStarted = false;
   let countdownInterval = null;
 
+  function wait(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   function initStorySlider() {
     if (!storySlider || !storyPrev || !storyNext) return;
 
@@ -53,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const weddingDate = new Date(2027, 9, 10, 0, 0, 0);
+    const weddingDate = new Date(2027, 9, 10, 12, 0, 0);
 
     function updateCountdown() {
       const now = new Date();
@@ -93,11 +97,15 @@ document.addEventListener("DOMContentLoaded", () => {
     introScreen.classList.add("hidden");
     invitation.classList.add("hidden");
     videoContainer.classList.remove("hidden");
+    videoContainer.classList.remove("fade-out");
   }
 
-  function showInvitation() {
+  async function showInvitation() {
     if (invitationShown) return;
     invitationShown = true;
+
+    videoContainer.classList.add("fade-out");
+    await wait(600);
 
     videoContainer.classList.add("hidden");
     introScreen.classList.add("hidden");
