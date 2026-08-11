@@ -84,24 +84,42 @@ body {
   color: #a07d4f;
 }
 
-.luxury-card h1,
-.hero-luxury h1 {
+/* TITOLI NOMI */
+.wedding-names {
   margin: 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.8rem, 6.5vw, 6.2rem);
-  line-height: 0.95;
-  font-weight: 600;
+  text-align: center;
+}
+
+.wedding-names .name-line,
+.wedding-names .amp-line {
+  display: block;
+  font-family: 'Alex Brush', cursive;
+  font-weight: 400;
   color: #2e241c;
 }
 
-.hero-luxury h1 {
-  font-size: clamp(4.8rem, 9vw, 7.6rem);
+.luxury-card .wedding-names .name-line {
+  font-size: clamp(4.2rem, 8vw, 6.4rem);
+  line-height: 0.9;
 }
 
-.luxury-card h1 span,
-.hero-luxury h1 span {
-  font-style: italic;
+.luxury-card .wedding-names .amp-line {
+  font-size: clamp(3.4rem, 6vw, 4.8rem);
+  line-height: 0.85;
   color: #b08a55;
+  margin: 0.1em 0;
+}
+
+.hero-luxury .wedding-names .name-line {
+  font-size: clamp(5rem, 10vw, 7.8rem);
+  line-height: 0.92;
+}
+
+.hero-luxury .wedding-names .amp-line {
+  font-size: clamp(3.8rem, 7vw, 5.6rem);
+  line-height: 0.85;
+  color: #b08a55;
+  margin: 0.08em 0;
 }
 
 .divider,
@@ -677,29 +695,6 @@ body {
   .story-photo img {
     height: 260px;
   }
-
-  .luxury-card {
-    width: min(96vw, 860px);
-    padding: 50px 18px;
-  }
-
-  .luxury-card h1 {
-    font-size: clamp(3.2rem, 7vw, 5.2rem);
-  }
-}
-
-@media (max-width: 700px) {
-  .luxury-card {
-    width: 100%;
-    max-width: 100%;
-    padding: 42px 18px;
-  }
-
-  .luxury-card h1 {
-    white-space: normal;
-    font-size: clamp(3.4rem, 12vw, 5.2rem);
-    line-height: 1.02;
-  }
 }
 
 @media (max-width: 560px) {
@@ -781,8 +776,19 @@ body {
     max-width: 260px;
   }
 
-  .luxury-card h1,
-  .hero-luxury h1 {
-    font-size: clamp(3.8rem, 12vw, 5.8rem);
+  .luxury-card .wedding-names .name-line {
+    font-size: clamp(3.8rem, 13vw, 5.4rem);
+  }
+
+  .luxury-card .wedding-names .amp-line {
+    font-size: clamp(3rem, 10vw, 4.2rem);
+  }
+
+  .hero-luxury .wedding-names .name-line {
+    font-size: clamp(4.3rem, 14vw, 6rem);
+  }
+
+  .hero-luxury .wedding-names .amp-line {
+    font-size: clamp(3.2rem, 11vw, 4.5rem);
   }
 }
