@@ -14,7 +14,7 @@
 <body>
 
   <!-- SCHERMATA INIZIALE -->
-  <section id="intro-screen" class="screen intro-screen">
+  <section id="intro-screen" class="screen intro-screen is-visible">
     <div class="luxury-card">
       <p class="eyebrow">Wedding Invitation</p>
       <h1>Marco <span>&</span> Laura</h1>
@@ -22,27 +22,38 @@
       <p class="date">10 Ottobre 2027</p>
       <p class="subtitle">Siete invitati ad aprire la nostra busta digitale</p>
 
-      <button id="startVideoBtn" class="open-btn">
+      <button
+        id="startVideoBtn"
+        class="open-btn"
+        aria-label="Apri la busta digitale"
+        type="button"
+      >
         Apri la busta
       </button>
     </div>
   </section>
 
   <!-- VIDEO -->
-  <section id="video-container" class="fullscreen-layer hidden">
-    <video id="introVideo" class="fullscreen-video" playsinline preload="auto" controls>
+  <section id="video-container" class="fullscreen-layer screen-state hidden-state" aria-hidden="true">
+    <video
+      id="introVideo"
+      class="fullscreen-video"
+      playsinline
+      webkit-playsinline
+      preload="auto"
+    >
       <source src="video/Video_Busta.mp4" type="video/mp4">
       Il tuo browser non supporta il video.
     </video>
   </section>
 
   <!-- SITO FINALE -->
-  <section id="invitation" class="screen invitation-screen hidden">
+  <section id="invitation" class="screen invitation-screen hidden-state" aria-hidden="true">
     <div class="invitation-bg-glow invitation-bg-glow-1"></div>
     <div class="invitation-bg-glow invitation-bg-glow-2"></div>
 
     <div class="site-shell">
-      <header class="hero-luxury">
+      <header class="hero-luxury reveal">
         <p class="eyebrow">Wedding Day</p>
         <h1>Marco <span>&</span> Laura</h1>
         <div class="hero-divider"></div>
@@ -53,7 +64,7 @@
       </header>
 
       <!-- COUNTDOWN -->
-      <section class="luxury-panel countdown-panel">
+      <section class="luxury-panel countdown-panel reveal">
         <p class="section-label">Countdown</p>
         <h2>Il grande giorno si avvicina</h2>
 
@@ -82,7 +93,7 @@
       </section>
 
       <!-- CRONOSTORIA LUXURY -->
-      <section class="luxury-panel story-section">
+      <section class="luxury-panel story-section reveal">
         <div class="story-header">
           <p class="section-label">La nostra storia</p>
           <h2>Un viaggio d’amore, tappa dopo tappa</h2>
@@ -93,7 +104,7 @@
         </div>
 
         <div class="story-slider-wrapper">
-          <button class="story-nav story-nav-left" id="storyPrev" aria-label="Scorri a sinistra">
+          <button class="story-nav story-nav-left" id="storyPrev" aria-label="Scorri a sinistra" type="button">
             ‹
           </button>
 
@@ -149,14 +160,14 @@
             </article>
           </div>
 
-          <button class="story-nav story-nav-right" id="storyNext" aria-label="Scorri a destra">
+          <button class="story-nav story-nav-right" id="storyNext" aria-label="Scorri a destra" type="button">
             ›
           </button>
         </div>
       </section>
 
       <!-- EVENTO -->
-      <section class="luxury-panel event-section">
+      <section class="luxury-panel event-section reveal">
         <p class="section-label">Dettagli del giorno</p>
         <h2>Vi aspettiamo a Villa Malliana</h2>
 
@@ -212,14 +223,15 @@
               style="border:0;"
               allowfullscreen=""
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mappa Villa Malliana">
             </iframe>
           </div>
         </div>
       </section>
 
       <!-- MESSAGGIO FINALE -->
-      <section class="luxury-panel love-note">
+      <section class="luxury-panel love-note reveal">
         <p class="section-label">Un pensiero</p>
         <h2>Non vediamo l’ora di condividere questo giorno con voi</h2>
         <p>
