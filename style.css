@@ -431,9 +431,19 @@ body {
   width: 100%;
   height: 320px;
   object-fit: cover;
+  object-position: center center;
   display: block;
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* CORREZIONE INQUADRATURA FOTO 1 E FOTO 4 */
+.photo-lower-1 {
+  object-position: center 30%;
+}
+
+.photo-lower-4 {
+  object-position: center 28%;
 }
 
 .story-content {
@@ -730,6 +740,14 @@ body {
 
   .story-photo img {
     height: 220px;
+  }
+
+  .photo-lower-1 {
+    object-position: center 32%;
+  }
+
+  .photo-lower-4 {
+    object-position: center 30%;
   }
 
   .map-btn {
