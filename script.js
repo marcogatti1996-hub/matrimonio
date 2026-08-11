@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     introScreen.classList.add("hidden");
     invitation.classList.add("hidden");
     videoContainer.classList.remove("hidden");
+    videoContainer.classList.remove("fade-out");
   }
 
   function showInvitation() {
