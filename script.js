@@ -12,19 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let invitationShown = false;
   let countdownStarted = false;
   let countdownInterval = null;
-  let storySliderInitialized = false;
-  let revealInitialized = false;
-  let fallbackTimeout = null;
-
-  function wait(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
 
   function initStorySlider() {
-    if (storySliderInitialized) return;
     if (!storySlider || !storyPrev || !storyNext) return;
-
-    storySliderInitialized = true;
 
     const getScrollAmount = () => {
       const firstCard = storySlider.querySelector(".story-card");
@@ -47,27 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function initRevealAnimations() {
-    if (revealInitialized) return;
-    revealInitialized = true;
-
-    const reveals = document.querySelectorAll(".reveal");
-    if (!reveals.length) return;
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          obs.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.15
-    });
-
-    reveals.forEach((el) => observer.observe(el));
-  }
-
   function startCountdown() {
     if (countdownStarted) return;
     countdownStarted = true;
@@ -80,10 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const countdown = document.getElementById("countdown");
 
     if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !countdownMessage || !countdown) {
+      console.log("Elementi countdown non trovati");
       return;
     }
 
-    const weddingDate = new Date(2027, 9, 10, 12, 0, 0);
+    const weddingDate = new Date(2027, 9, 10, 0, 0, 0);
 
     function updateCountdown() {
       const now = new Date();
@@ -100,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (countdownInterval) {
           clearInterval(countdownInterval);
-          countdownInterval = null;
         }
         return;
       }
@@ -120,82 +89,49 @@ document.addEventListener("DOMContentLoaded", () => {
     countdownInterval = setInterval(updateCountdown, 1000);
   }
 
-  async function startVideoFlow() {
-    if (!introScreen || !videoContainer || !introVideo) return;
-
-    startVideoBtn.disabled = true;
-
-    introScreen.classList.add("fade-out");
-    await wait(700);
-
+  function showVideo() {
     introScreen.classList.add("hidden");
-    introScreen.setAttribute("aria-hidden", "true");
-
+    invitation.classList.add("hidden");
     videoContainer.classList.remove("hidden");
-    videoContainer.setAttribute("aria-hidden", "false");
-
-    try {
-      introVideo.currentTime = 0;
-      await introVideo.play();
-    } catch (error) {
-      await showInvitationOnly();
-      return;
-    }
-
-    fallbackTimeout = setTimeout(() => {
-      showInvitationOnly();
-    }, 15000);
   }
 
-  async function showInvitationOnly() {
+  function showInvitation() {
     if (invitationShown) return;
     invitationShown = true;
 
-    if (fallbackTimeout) {
-      clearTimeout(fallbackTimeout);
-      fallbackTimeout = null;
-    }
-
-    if (introVideo) {
-      introVideo.pause();
-    }
-
-    if (videoContainer && !videoContainer.classList.contains("hidden")) {
-      videoContainer.classList.add("fade-out");
-      await wait(700);
-      videoContainer.classList.add("hidden");
-      videoContainer.setAttribute("aria-hidden", "true");
-      videoContainer.classList.remove("fade-out");
-    }
-
+    videoContainer.classList.add("hidden");
+    introScreen.classList.add("hidden");
     invitation.classList.remove("hidden");
-    invitation.setAttribute("aria-hidden", "false");
-
-    requestAnimationFrame(() => {
-      invitation.classList.add("fade-in");
-    });
 
     startCountdown();
     initStorySlider();
-    initRevealAnimations();
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
   }
 
   if (startVideoBtn && introVideo) {
-    startVideoBtn.addEventListener("click", startVideoFlow);
+    startVideoBtn.addEventListener("click", async () => {
+      showVideo();
 
-    introVideo.addEventListener("ended", showInvitationOnly);
-
-    introVideo.addEventListener("error", showInvitationOnly);
-
-    introVideo.addEventListener("timeupdate", () => {
-      if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.15) {
-        showInvitationOnly();
+      try {
+        introVideo.currentTime = 0;
+        await introVideo.play();
+      } catch (error) {
+        console.log("Errore riproduzione video:", error);
       }
     });
+
+    introVideo.addEventListener("ended", showInvitation);
+
+    introVideo.addEventListener("timeupdate", () => {
+      if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.2) {
+        showInvitation();
+      }
+    });
+
+    introVideo.addEventListener("error", () => {
+      console.log("Errore nel caricamento del video");
+      showInvitation();
+    });
+  } else {
+    console.log("Bottone o video non trovati nel DOM");
   }
 });
