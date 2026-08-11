@@ -27,31 +27,9 @@ body {
   display: none !important;
 }
 
-.hidden-display {
-  display: none !important;
-}
-
 .screen {
   width: 100%;
   min-height: 100vh;
-}
-
-.is-visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.hidden-state {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.intro-screen,
-.fullscreen-layer,
-.invitation-screen {
-  transition: opacity 0.7s ease, visibility 0.7s ease;
 }
 
 /* INTRO */
@@ -62,6 +40,12 @@ body {
   padding: 24px;
   position: relative;
   overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+
+.intro-screen.fade-out {
+  opacity: 0;
 }
 
 .intro-screen::before,
@@ -201,8 +185,12 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  padding: 0;
-  margin: 0;
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+
+.fullscreen-layer.fade-out {
+  opacity: 0;
 }
 
 .fullscreen-video {
@@ -212,7 +200,7 @@ body {
   background: #000;
 }
 
-/* SITO FINALE */
+/* INVITATION */
 .invitation-screen {
   position: relative;
   overflow: hidden;
@@ -221,6 +209,12 @@ body {
     radial-gradient(circle at top left, rgba(255,255,255,0.85), transparent 28%),
     radial-gradient(circle at bottom right, rgba(212,175,55,0.10), transparent 25%),
     linear-gradient(135deg, #f8f3ee 0%, #fcf8f4 45%, #f2eae2 100%);
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.invitation-screen.fade-in {
+  opacity: 1;
 }
 
 .invitation-bg-glow {
@@ -613,6 +607,7 @@ body {
   height: 100%;
   min-height: 420px;
   display: block;
+  border: 0;
 }
 
 /* LOVE NOTE */
