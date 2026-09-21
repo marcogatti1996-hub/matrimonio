@@ -27,7 +27,7 @@
       <p class="date">10 Ottobre 2027</p>
       <p class="subtitle">Siete invitati ad aprire la nostra busta digitale</p>
 
-      <button id="startVideoBtn" class="open-btn">
+      <button id="startVideoBtn" class="open-btn" type="button">
         Apri la busta
       </button>
     </div>
@@ -109,7 +109,7 @@
               <span class="story-date">Novembre 2022</span>
               <h3>Il primo incontro</h3>
               <p>
-                Il destino ci ha legati fin da subito, fin da quando ci siamo trovati a una manciata di chilometri di distanza, il nostro filo rosso ha iniziato a tiraci con forza l'una verso l'altro. 
+                Il destino ci ha legati fin da subito, fin da quando ci siamo trovati a una manciata di chilometri di distanza, il nostro filo rosso ha iniziato a tirarci con forza l'una verso l'altro.
                 Il punto di incontro è stato davanti a un cocktail, chi l'avrebbe mai detto?!
               </p>
             </div>
@@ -124,8 +124,8 @@
               <span class="story-date">Maggio 2023</span>
               <h3>Continuando il viaggio insieme</h3>
               <p>
-                Incredibilmente ogni tanto siamo eleganti anche noi?! 
-                Eravamo solo all'inizio ma ci sentivamo come se nessuno potesse fare a meno dell'altro, come se fino a quel momento fossiamo sempre stati insieme.
+                Incredibilmente ogni tanto siamo eleganti anche noi?!
+                Eravamo solo all'inizio ma ci sentivamo come se nessuno potesse fare a meno dell'altro, come se fino a quel momento fossimo sempre stati insieme.
               </p>
             </div>
           </article>
@@ -139,7 +139,8 @@
               <span class="story-date">Agosto 2023</span>
               <h3>Un'avventura condivisa</h3>
               <p>
-                La prima nostra avventura spericolata in cui entrambi abbiamo affrontato le nostre paure, insieme è stato più facile.
+                La nostra prima avventura spericolata, in cui entrambi abbiamo affrontato le nostre paure:
+                insieme è stato più facile.
               </p>
             </div>
           </article>
@@ -153,8 +154,9 @@
               <span class="story-date">Novembre 2025</span>
               <h3>I nostri amori pelosi</h3>
               <p>
-                Con l'arrivo di Roger abbiamo iniziato a condividere il nostro amore per qualcun altro. 
-                Dopo due anni abbiamo allargato i nostri orizzoni e allargato anche la nostra strana famiglia con Oscar, riempiono la casa di amore, dolcezza e disastri.
+                Con l'arrivo di Roger abbiamo iniziato a condividere il nostro amore per qualcun altro.
+                Dopo due anni abbiamo allargato i nostri orizzonti e anche la nostra strana famiglia con Oscar:
+                riempiono la casa di amore, dolcezza e piccoli disastri.
               </p>
             </div>
           </article>
@@ -168,8 +170,8 @@
               <span class="story-date">Dicembre 2025</span>
               <h3>La proposta</h3>
               <p>
-                Molto impegno e una buona dose di fortuna hanno permesso di rendere questa nottata memorabile nonostante la neve e al vento Polare. 
-                Tre archi di aurora e una pioggia di stelle cadenti hanno creato lo sfondo perfetto per dire finalmente: "Si".
+                Molto impegno e una buona dose di fortuna hanno permesso di rendere questa nottata memorabile nonostante la neve e il vento polare.
+                Tre archi di aurora e una pioggia di stelle cadenti hanno creato lo sfondo perfetto per dire finalmente: "Sì".
               </p>
             </div>
           </article>
@@ -184,7 +186,7 @@
               <h3>Il nostro grande giorno</h3>
               <p>
                 Il giorno in cui celebreremo il nostro amore.
-                Vi aspettiamo per poter condividere con voi la nostra felicità.
+                Vi aspettiamo per condividere con voi la nostra felicità.
               </p>
             </div>
           </article>
@@ -249,6 +251,50 @@
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade">
             </iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="luxury-panel gift-section">
+        <button
+          class="gift-toggle"
+          id="giftToggle"
+          aria-expanded="false"
+          aria-controls="giftContent"
+          type="button"
+        >
+          <span class="gift-toggle-copy">
+            <span class="section-label gift-label-inline">Viaggio di nozze</span>
+            <span class="gift-toggle-text">Un pensiero per il nostro viaggio</span>
+            <span class="gift-toggle-subtext">
+              Per chi desidera accompagnarci anche nella nostra prossima avventura
+            </span>
+          </span>
+          <span class="gift-toggle-icon" id="giftToggleIcon" aria-hidden="true">+</span>
+        </button>
+
+        <div class="gift-content hidden" id="giftContent">
+          <div class="gift-content-inner">
+            <h2>Il regalo più bello sarà avervi con noi</h2>
+            <p class="gift-intro">
+              La vostra presenza renderà questo giorno ancora più speciale.
+              Per chi lo desidera, sarà possibile dedicarci un pensiero per il nostro viaggio di nozze,
+              che porteremo con noi tra ricordi, emozioni e nuovi luoghi da scoprire insieme.
+            </p>
+
+            <div class="gift-iban-card">
+              <p class="gift-iban-label">Coordinate per il regalo</p>
+              <p class="gift-iban" id="giftIban">IT00X0000000000000000000000</p>
+              <p class="gift-name">Intestatario: Marco Rossi e Laura Bianchi</p>
+
+              <button class="copy-iban-btn" id="copyIbanBtn" type="button">
+                Copia IBAN
+              </button>
+
+              <p class="copy-feedback hidden" id="copyFeedback">
+                IBAN copiato negli appunti
+              </p>
+            </div>
           </div>
         </div>
       </section>
