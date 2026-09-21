@@ -5,6 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const startVideoBtn = document.getElementById("startVideoBtn");
   const introVideo = document.getElementById("introVideo");
 
+  const giftToggle = document.getElementById("giftToggle");
+  const giftContent = document.getElementById("giftContent");
+  const giftToggleIcon = document.getElementById("giftToggleIcon");
+  const copyIbanBtn = document.getElementById("copyIbanBtn");
+  const giftIban = document.getElementById("giftIban");
+  const copyFeedback = document.getElementById("copyFeedback");
+
   let invitationShown = false;
   let countdownStarted = false;
   let countdownInterval = null;
@@ -62,22 +69,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showVideo() {
-    introScreen.classList.add("hidden");
-    invitation.classList.add("hidden");
-    videoContainer.classList.remove("hidden");
-    videoContainer.classList.remove("fade-out");
+    if (introScreen) introScreen.classList.add("hidden");
+    if (invitation) invitation.classList.add("hidden");
+    if (videoContainer) {
+      videoContainer.classList.remove("hidden");
+      videoContainer.classList.remove("fade-out");
+    }
   }
 
   function showInvitation() {
     if (invitationShown) return;
     invitationShown = true;
 
-    videoContainer.classList.add("fade-out");
+    if (introVideo) {
+      try {
+        introVideo.pause();
+      } catch (error) {
+        console.log("Errore pausa video:", error);
+      }
+    }
+
+    if (videoContainer) {
+      videoContainer.classList.add("fade-out");
+    }
 
     setTimeout(() => {
-      videoContainer.classList.add("hidden");
-      introScreen.classList.add("hidden");
-      invitation.classList.remove("hidden");
+      if (videoContainer) videoContainer.classList.add("hidden");
+      if (introScreen) introScreen.classList.add("hidden");
+      if (invitation) invitation.classList.remove("hidden");
       startCountdown();
     }, 600);
   }
@@ -109,5 +128,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   } else {
     console.log("Bottone o video non trovati nel DOM");
+  }
+
+  if (giftToggle && giftContent && giftToggleIcon) {
+    giftToggle.addEventListener("click", () => {
+      const isHidden = giftContent.classList.contains("hidden");
+
+      if (isHidden) {
+        giftContent.classList.remove("hidden");
+        giftToggle.classList.add("active");
+        giftToggle.setAttribute("aria-expanded", "true");
+        giftToggleIcon.textContent = "−";
+      } else {
+        giftContent.classList.add("hidden");
+        giftToggle.classList.remove("active");
+        giftToggle.setAttribute("aria-expanded", "false");
+        giftToggleIcon.textContent = "+";
+      }
+    });
+  }
+
+  if (copyIbanBtn && giftIban && copyFeedback) {
+    copyIbanBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(giftIban.textContent.trim());
+        copyFeedback.classList.remove("hidden");
+        copyIbanBtn.textContent = "Copiato";
+
+        setTimeout(() => {
+          copyFeedback.classList.add("hidden");
+          copyIbanBtn.textContent = "Copia IBAN";
+        }, 2200);
+      } catch (error) {
+        console.log("Errore copia IBAN:", error);
+      }
+    });
   }
 });
